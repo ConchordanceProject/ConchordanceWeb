@@ -7,7 +7,7 @@ angular.module('conchordance')
             scope.scaledFretPositions = new Array(scope.unscaledFretPositions.length);
             scope.scaledFretPositions[0] = 0;
 
-            scope.canvas = Raphael(element, 800, 120);
+            scope.canvas = Raphael(element[0], 0, 0, 800, 120);
 
             scope.$on('instrument-selected', function(event, instrument) {
                 scope.instrument = instrument;
