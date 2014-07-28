@@ -1,5 +1,9 @@
 @CHARSET "ISO-8859-1";
 
+body {
+    padding-top: 70px; /* for Bootstrap's fixed top header bar */
+}
+
 .note-name {
 	margin: 2px;
 }

@@ -4,11 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Conchordance</title>
 
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="lib/angular.min.js"></script>
 <script type="text/javascript" src="lib/raphael.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.min.js"></script>
 <script type="text/javascript" src="music.js"></script>
 <script type="text/javascript" src="conchordanceModule.js"></script>
 <script type="text/javascript" src="conchordanceService.js"></script>
+<script type="text/javascript" src="router.js"></script>
 <script type="text/javascript" src="controller/mainController.js"></script>
 <script type="text/javascript" src="component/fretboardView.js"></script>
 
@@ -16,58 +21,20 @@
 
 </head>
 <body ng-app="conchordance">
-Welcome to Conchordance.
 
-<div ng-controller="main">
-	<form ng-submit="findChords()">
-		<div class="form-section">
-			Instrument
-			<select ng-model="selectedInstrument" 
-				ng-options="i.name for i in instruments"
-				ng-change="instrumentSelected()">
-				<option value=""> -- Select an Instrument -- </option>			
-			</select>
-			<span class="note-name"
-				ng-repeat="note in selectedInstrument.tuning"
-				ng-bind-html="noteNameHtml(note)">
-			</span>
-		</div>
-		
-		<div class="form-section">
-			Root
-			<select ng-model="selectedRoot"
-				ng-options="n for n in notes">
-				<option value=""> -- Select Root -- </option>
-			</select>
-		</div>
-		
-		<div class="form-section">
-			Chord Type
-			<select ng-model="selectedChordType"
-				ng-options="t.name for t in chordTypes">
-				<option value=""> -- Select a Chord Type -- </option>
-			</select>
-			<span class="note-name"
-				ng-repeat="interval in selectedChordType.intervals"
-				ng-bind-html="intervalNameHtml(interval)">
-			</span>
-		</div>
-		
-		<button type="submit">Find Chords</button>
-	</form>
-	
-	<div id="fretboard"></div>
-	
-	<div class="chord-sample" 
-		ng-repeat="fingering in chordFingerings">
-		<div>frets: {{fingering.absoluteFrets}}</div>
-		<div>notes: 
-			<span class="note-name"
-				ng-repeat="intNote in fingering.sortedNotes"
-				ng-bind-html="noteNameHtml(intNote.note)" >
-			</span>
-		</div>
-	</div>
-</div>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Con<span style="color:#427c98;">chord</span>ance</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li ui-sref-active="active"><a ui-sref="home">Home</a></li>
+                <li ui-sref-active="active"><a ui-sref="about">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div ui-view></div>
+
 </body>
 </html>

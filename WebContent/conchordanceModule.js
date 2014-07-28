@@ -1,4 +1,4 @@
-angular.module('conchordance', [])
+angular.module('conchordance', ['ui.router'])
 .factory('$music', function() {
 	return Music;
 })
