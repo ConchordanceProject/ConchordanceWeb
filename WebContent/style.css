@@ -6,20 +6,10 @@ body {
 
 .note-name {
 	margin: 2px;
+    font-style: italic;
 }
 
 .chord-sample {
-	margin: 2px;
-	padding: 4px;
-	border: 1px solid gray;
+	margin: 6px 4px;
 	display: inline-block;
-}
-
-.form-section {
-	padding: 5px;
-}
-
-form {
-	padding: 5px;
-	border: 1px solid black;
 }
