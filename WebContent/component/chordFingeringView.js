@@ -11,6 +11,7 @@ angular.module('conchordance')
         	scope.height = 150;
         	scope.showFingers = false;
         	scope.canvas = Raphael(element[0], 0, 0, scope.width, scope.height);
+        	scope.canvas.setSize(scope.width, scope.height); // Somehow, the size doesn't take and this is necessary
 
         	scope.bgColor = "#fff";
 
