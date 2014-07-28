@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Conchordance</title>
+
+<script type="text/javascript" src="lib/angular.min.js"></script>
+<script type="text/javascript" src="music.js"></script>
+<script type="text/javascript" src="conchordanceModule.js"></script>
+<script type="text/javascript" src="conchordanceService.js"></script>
+<script type="text/javascript" src="controller/mainController.js"></script>
+
+<link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+<body ng-app="conchordance">
+Welcome to Conchordance.
+
+<div ng-controller="main">
+	<form ng-submit="findChords()">
+		<div class="form-section">
+			Instrument
+			<select ng-model="selectedInstrument" 
+				ng-options="i.name for i in instruments">
+				<option value=""> -- Select an Instrument -- </option>			
+			</select>
+			<span class="note-name"
+				ng-repeat="note in selectedInstrument.tuning"
+				ng-bind-html="noteNameHtml(note)">
+			</span>
+		</div>
+		
+		<div class="form-section">
+			Root
+			<select ng-model="selectedRoot"
+				ng-options="n for n in notes">
+				<option value=""> -- Select Root -- </option>
+			</select>
+		</div>
+		
+		<div class="form-section">
+			Chord Type
+			<select ng-model="selectedChordType"
+				ng-options="t.name for t in chordTypes">
+				<option value=""> -- Select a Chord Type -- </option>
+			</select>
+			<span class="note-name"
+				ng-repeat="interval in selectedChordType.intervals"
+				ng-bind-html="intervalNameHtml(interval)">
+			</span>
+		</div>
+		
+		<button type="submit">Find Chords</button>
+	</form>
+	
+	<div class="chord-sample" 
+		ng-repeat="fingering in chordFingerings">
+		<div>frets: {{fingering.absoluteFrets}}</div>
+		<div>notes: 
+			<span class="note-name"
+				ng-repeat="intNote in fingering.sortedNotes"
+				ng-bind-html="noteNameHtml(intNote.note)" >
+			</span>
+		</div>
+	</div>
+</div>
+</body>
+</html>

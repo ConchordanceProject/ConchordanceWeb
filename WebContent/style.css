@@ -1,0 +1,21 @@
+@CHARSET "ISO-8859-1";
+
+.note-name {
+	margin: 2px;
+}
+
+.chord-sample {
+	margin: 2px;
+	padding: 4px;
+	border: 1px solid gray;
+	display: inline-block;
+}
+
+.form-section {
+	padding: 5px;
+}
+
+form {
+	padding: 5px;
+	border: 1px solid black;
+}
