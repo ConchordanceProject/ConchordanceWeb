@@ -5,10 +5,12 @@
 <title>Conchordance</title>
 
 <script type="text/javascript" src="lib/angular.min.js"></script>
+<script type="text/javascript" src="lib/raphael.js"></script>
 <script type="text/javascript" src="music.js"></script>
 <script type="text/javascript" src="conchordanceModule.js"></script>
 <script type="text/javascript" src="conchordanceService.js"></script>
 <script type="text/javascript" src="controller/mainController.js"></script>
+<script type="text/javascript" src="component/fretboardView.js"></script>
 
 <link rel="stylesheet" type="text/css" href="style.css">
 
@@ -21,7 +23,8 @@ Welcome to Conchordance.
 		<div class="form-section">
 			Instrument
 			<select ng-model="selectedInstrument" 
-				ng-options="i.name for i in instruments">
+				ng-options="i.name for i in instruments"
+				ng-change="instrumentSelected()">
 				<option value=""> -- Select an Instrument -- </option>			
 			</select>
 			<span class="note-name"
@@ -52,6 +55,8 @@ Welcome to Conchordance.
 		
 		<button type="submit">Find Chords</button>
 	</form>
+	
+	<div id="fretboard"></div>
 	
 	<div class="chord-sample" 
 		ng-repeat="fingering in chordFingerings">
