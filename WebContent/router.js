@@ -1,11 +1,11 @@
 angular.module('conchordance').config(function($stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/chordExplorer');
 
     $stateProvider
-        .state('home', {
-            url: '/home',
-            templateUrl: 'views/home.html'
+        .state('chordExplorer', {
+            url: '/chordExplorer',
+            templateUrl: 'views/chordExplorer.html'
         })
         .state('chordTheory', {
             url: '/chordTheory',
