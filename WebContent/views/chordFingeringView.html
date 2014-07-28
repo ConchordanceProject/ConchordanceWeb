@@ -1,0 +1,12 @@
+<div class="panel panel-primary">
+    <div class="panel-heading"></div>
+    <div class="panel-body">
+        <div>frets: {{fingering.absoluteFrets}}</div>
+        <div>notes:
+            <span class="note-name"
+                  ng-repeat="intNote in fingering.sortedNotes"
+                  ng-bind-html="noteNameHtml(intNote.note)" >
+            </span>
+        </div>
+    </div>
+</div>
