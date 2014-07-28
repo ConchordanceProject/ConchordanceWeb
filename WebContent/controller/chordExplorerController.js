@@ -33,9 +33,14 @@ angular.module('conchordance')
 				$scope.chordFingerings = results;
 			});
 		};
-		
+
 		$scope.instrumentSelected = function() {
 			$scope.$broadcast('instrument-selected', $scope.selectedInstrument);
+		};
+
+		$scope.chordFingeringSelected = function(chordFingering) {
+			$scope.selectedChordFingering = chordFingering;
+			$scope.$broadcast('chordFingering-selected', chordFingering);
 		};
 	
 		$scope.showWelcome = true;
