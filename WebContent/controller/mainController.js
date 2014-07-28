@@ -27,6 +27,13 @@ angular.module('conchordance')
 				$scope.chordFingerings = results;
 			});
 		};
+		
+		$scope.instrumentSelected = function() {
+			// TODO this direct dom manipulation is horrible.
+			var fretboardDiv = document.getElementById("fretboard");
+			fretboardDiv.innerHTML = "";
+			new FretboardView(fretboardDiv, $scope.selectedInstrument).render();
+		};
 	
 		$scope.notes = $music.sharpNotes;
 		$scope.instruments = [];

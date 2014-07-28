@@ -5,7 +5,8 @@ Welcome to Conchordance.
         <div class="form-section">
             Instrument
             <select ng-model="selectedInstrument"
-                    ng-options="i.name for i in instruments">
+                    ng-options="i.name for i in instruments"
+                    ng-change="instrumentSelected()">
                 <option value=""> -- Select an Instrument -- </option>
             </select>
 			<span class="note-name"
@@ -36,6 +37,8 @@ Welcome to Conchordance.
 
         <button type="submit">Find Chords</button>
     </form>
+    
+    <div id="fretboard"></div>
 
     <div class="chord-sample"
          ng-repeat="fingering in chordFingerings">
