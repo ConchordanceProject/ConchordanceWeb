@@ -83,7 +83,9 @@
 	<br/>
 	<br/>
 	<div class="row">
-		<div ng-repeat="fingering in chordFingerings" class="chord-sample">
+		<div ng-repeat="fingering in chordFingerings"
+			class="chord-sample"
+			ng-click="chordFingeringSelected(fingering)">
 			<chord-fingering-view fingering="fingering"></chord-fingering-view>
 		</div>
 	</div>

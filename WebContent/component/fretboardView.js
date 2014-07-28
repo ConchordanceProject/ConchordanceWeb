@@ -16,7 +16,13 @@ angular.module('conchordance')
             scope.canvas.setSize(width, height); // Somehow, the size doesn't take and this is necessary
 
             scope.$on('instrument-selected', function(event, instrument) {
+            	scope.chordFingering = null;
                 scope.instrument = instrument;
+                scope.render();
+            });
+
+            scope.$on('chordFingering-selected', function(event, chordFingering) {
+                scope.chordFingering = chordFingering;
                 scope.render();
             });
 
@@ -64,8 +70,26 @@ angular.module('conchordance')
                 scope.canvas.rect(fretboardLeft-10, fretboardTop-5, 10, fretboardHeight+10).attr({fill: "#888", stroke: "none"});
 
                 // TODO highlight the positions included in a selected chord
+                // (ie, all the A's, C#'s, and E's if A-Maj is selected)
 
-                // TODO highlight the positions included in a selected chord fingering
+            	// Draw selected chord fingering
+                if (scope.chordFingering != null) {
+            	    // TODO - share fretdot-drawing logic between this and above
+        	    	for (var s = 0; s<strings; ++s) {
+        		    	var y = fretboardTop + s*stringSpacing;
+        		    	var f = scope.chordFingering.absoluteFrets[s];
+        	    		if (f > 0) {
+            				this.canvas.circle(fretboardLeft + scope.scaledFretPositions[f] - 
+            					(scope.scaledFretPositions[f] - scope.scaledFretPositions[f-1])/2, y, 5)
+            					.attr("stroke", "#000")
+                 				.attr("fill", "#0f5");
+            			} else if (f == 0) {
+            				this.canvas.circle(fretboardLeft/2, y, 5)
+        						.attr("stroke", "#000")
+        	         			.attr("fill", "#0f5");
+            			}
+        		    }
+                }
             };
         }
     };
