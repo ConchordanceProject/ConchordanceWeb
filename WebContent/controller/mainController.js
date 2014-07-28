@@ -45,12 +45,13 @@ angular.module('conchordance')
 		.success(function(results) {
 			$scope.instruments = results;
 			$scope.selectedInstrument = results[0];
-		});
+            $scope.instrumentSelected();
+        });
 
 		$conchordance.getChordTypes()
 		.success(function(results) {
 			$scope.chordTypes = results;
 			$scope.selectedChordType = results[0];
-		});		
+		});
 	}
 ]);
