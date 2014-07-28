@@ -81,12 +81,12 @@
 
         <div class="text-muted pull-right" ng-show="chordFingerings.length > 0">{{chordFingerings.length}} chords found</div>
         <br/><br/>
-        <div ng-repeat="fingering in chordFingerings" class="chord-sample">
-            <chord-fingering-view fingering="fingering"></chord-fingering-view>
+        <div class="row">
+	        <div ng-repeat="fingering in chordFingerings" class="chord-sample">
+	            <chord-fingering-view fingering="fingering"></chord-fingering-view>
+	        </div>
         </div>
-
     </div>
 
     <br/>
-
 </div>

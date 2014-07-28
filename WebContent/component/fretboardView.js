@@ -3,6 +3,8 @@ angular.module('conchordance')
     return {
         restrict: 'E',
         link: function(scope, element, attrs) {
+            element.addClass('fretboard');
+        	
             scope.unscaledFretPositions = [0.0, 0.056, 0.109, 0.159, 0.206, 0.251, 0.293, 0.333, 0.370, 0.405, 0.439, 0.470, 0.5, 0.528, 0.555, 0.580, 0.603, 0.625, 0.646, 0.666, 0.685];
             scope.scaledFretPositions = new Array(scope.unscaledFretPositions.length);
             scope.scaledFretPositions[0] = 0;

@@ -12,7 +12,7 @@ angular.module('conchordance')
 		$scope.getChord = function() {
 			if ($scope.selectedRoot != null && $scope.selectedChordType != null) {
 				$conchordance.getChord($scope.selectedRoot, $scope.selectedChordType.name)
-				.success(function(result) {
+				.success(function(result) {					
 					$scope.selectedChord = result;
 				});
 			}

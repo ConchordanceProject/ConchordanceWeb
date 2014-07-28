@@ -24,6 +24,10 @@ angular.module('conchordance')
 				$scope.selectedRoot,
 				$scope.selectedChordType.name
 			).success(function(results) {
+				// calculate diagram positions for these fingerings
+				for (var f in results)
+					$music.calcDiagram(results[f]);
+
 				$scope.chordFingerings = results;
 			});
 		};
