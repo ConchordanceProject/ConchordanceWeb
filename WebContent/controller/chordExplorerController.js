@@ -10,6 +10,8 @@ angular.module('conchordance')
 		};
 		
 		$scope.findChords = function() {
+			$scope.showWelcome = false;
+			
 			// Abort if parameters are invalid
 			if ($scope.selectedInstrument == null
 				|| $scope.selectedRoot == null
@@ -36,6 +38,7 @@ angular.module('conchordance')
 			$scope.$broadcast('instrument-selected', $scope.selectedInstrument);
 		};
 	
+		$scope.showWelcome = true;
 		$scope.notes = $music.sharpNotes;
 		$scope.instruments = [];
 		$scope.chordTypes = [];
