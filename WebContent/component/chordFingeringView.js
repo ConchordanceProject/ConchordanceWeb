@@ -13,12 +13,17 @@ angular.module('conchordance')
         	scope.canvas = Raphael(element[0], 0, 0, scope.width, scope.height);
         	scope.canvas.setSize(scope.width, scope.height); // Somehow, the size doesn't take and this is necessary
 
-        	scope.bgColor = "#fff";
-
+        	// TODO pull these values from CSS somehow
+        	scope.DEFAULT_BG = "#fff";
+        	scope.FRETDOT_MUTED = "#888";
+        	scope.HIGHLIGHT = "#05F";
+        	
+        	scope.bgColor = scope.DEFAULT_BG;
+        	
         	scope.mouseover = function() {};
         	scope.mouseout = function() {};
         	scope.click = function() {};
-
+        	
         	scope.drawClef = false;
 
         	scope.renderDiagram = function() {
@@ -42,7 +47,7 @@ angular.module('conchordance')
             	var chordBottom = chordTop + chordHeight;
             	
             	// chord border
-                scope.canvas.rect(chordLeft, chordTop, chordWidth, chordHeight, 0).attr({fill: "#fff", stroke: "#000"});
+                scope.canvas.rect(chordLeft, chordTop, chordWidth, chordHeight, 0).attr({fill: scope.DEFAULT_BG, stroke: "#000"});
                 
                 // position
                 if (scope.chord.position > 0)
@@ -68,9 +73,9 @@ angular.module('conchordance')
         	     		if (fret > -1) {
         	     			var c = scope.canvas.circle(x, y, fretSpacing/4)
         	         			.attr("stroke", "#000")
-        	         			.attr("fill", "#fff");
+        	         			.attr("fill", scope.DEFAULT_BG);
         	     			if (fret > 0) {
-        	     				c.attr("fill", "#888");
+        	     				c.attr("fill", scope.FRETDOT_MUTED);
         	     				if (scope.showFingers)
         	     					scope.canvas.text(x, y, scope.chord.fingers[s])
         	     						.attr("fill", "#fff");
