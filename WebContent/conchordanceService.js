@@ -6,6 +6,17 @@ angular.module('conchordance').service('$conchordance', function($http) {
 			url: requestBase + 'instrument/GetInstruments',
 		});
 	};
+	this.getFretboard = function(instrument, root, type) {
+		return $http({
+			method: 'GET',
+			url: requestBase + 'instrument/GetFretboard',
+			params: {
+				instrument: instrument,
+				chordType: type,
+				root: root,
+			},
+		});
+	};
 	this.getChordTypes = function() {
 		return $http({
 			method: 'GET',

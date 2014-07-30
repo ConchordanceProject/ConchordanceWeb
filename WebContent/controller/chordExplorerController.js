@@ -18,7 +18,17 @@ angular.module('conchordance')
 				|| $scope.selectedChordType == null) {
 				$scope.chordFingerings = [];
 				return;
-			}			
+			}
+
+			// Get the fretboard layout
+			$conchordance.getFretboard(
+				$scope.selectedInstrument.name, 
+				$scope.selectedRoot,
+				$scope.selectedChordType.name
+			).success(function(result) {
+				// TODO it would be better to directly inform the freboardView component than to broadcast
+				$scope.$broadcast('fretboard-updated', result);
+			});
 			
 			// Search chords from webservice
 			$conchordance.getChords(
