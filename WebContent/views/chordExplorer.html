@@ -69,7 +69,7 @@
 
                        <div class="col-sm-4">
                            <br/>
-                           <button type="submit" class="btn btn-primary">Find Chords</button>
+                           <button type="submit" class="btn btn-primary" ng-disabled="searchInProgress">Find Chords <i class="fa" ng-class="{'fa-refresh': searchInProgress, 'fa-spin': searchInProgress}"></i></button>
                        </div>
                    </div>
                </form>

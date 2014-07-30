@@ -3,7 +3,7 @@ angular.module('conchordance')
 	return {
         restrict: 'E',
         scope: {
-        	chord: '=fingering',
+            chord: '=fingering',
         },
         link: function(scope, element, attrs) {
         	element.addClass('chord-sample');
