@@ -46,7 +46,16 @@ angular.module('conchordance')
 
 		$scope.instrumentSelected = function() {
 			$scope.$broadcast('instrument-selected', $scope.selectedInstrument);
-		};
+            $scope.chordFingerings = [];
+        };
+
+        $scope.chordTypeSelected = function() {
+            $scope.chordFingerings = [];
+        };
+
+        $scope.rootSelected = function() {
+            $scope.chordFingerings = [];
+        };
 
 		$scope.chordFingeringSelected = function(chordFingering) {
 			$scope.selectedChordFingering = chordFingering;

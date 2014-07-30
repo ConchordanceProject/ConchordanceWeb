@@ -43,6 +43,7 @@
                                </label>
                                <select ng-model="selectedChordType"
                                        ng-options="t.name for t in chordTypes"
+                                       ng-change="chordTypeSelected()"
                                        class="form-control">
                                    <option value=""> -- Select a Chord Type -- </option>
                                </select>
@@ -60,6 +61,7 @@
                                </label>
                                <select ng-model="selectedRoot"
                                        ng-options="n for n in notes"
+                                       ng-change="rootSelected()"
                                        class="form-control">
                                    <option value=""> -- Select Root -- </option>
                                </select>
