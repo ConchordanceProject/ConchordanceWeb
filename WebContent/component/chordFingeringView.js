@@ -4,6 +4,7 @@ angular.module('conchordance')
         restrict: 'E',
         scope: {
         	chord: '=fingering',
+        	highlight: '=highlight',
         },
         link: function(scope, element, attrs) {
         	element.addClass('chord-sample');
@@ -19,9 +20,35 @@ angular.module('conchordance')
         	scope.HIGHLIGHT = "#05F";
         	
         	scope.bgColor = scope.DEFAULT_BG;
+
+        	// Due to the hit box being reconstructed during render(),
+        	// extra hover events are triggered. This logic prevents hover event spam.
+        	scope.ignoreMouseOut = true;
+        	scope.ignoreMouseOver = false;        	
+        	scope.mouseover = function() {        		
+        		if (!scope.ignoreMouseOver) {
+	        		scope.ignoreMouseOver = true;
+	        		scope.ignoreMouseOut = true;
+	        		
+	        		if (scope.highlight) {
+	        			scope.bgColor = scope.HIGHLIGHT;
+	        			scope.render();
+	        		}
+        		}
+        	};
         	
-        	scope.mouseover = function() {};
-        	scope.mouseout = function() {};
+        	scope.mouseout = function() {
+        		if (scope.ignoreMouseOut) {
+        			scope.ignoreMouseOut = false;
+        		} else {
+        			scope.ignoreMouseOver = false;
+        			
+        			// Consider this case the "actual" mouseout event
+        			scope.bgColor = scope.DEFAULT_BG;
+        			scope.render();
+        		}
+        	};
+        	
         	scope.click = function() {};
         	
         	scope.drawClef = false;
@@ -90,7 +117,6 @@ angular.module('conchordance')
         			.attr("stroke", "none")
         			.attr("fill-opacity", "0");
                 hitbox.hover(scope.mouseover, scope.mouseout);
-                hitbox.click(scope.click);
         	};
 
         	scope.renderTab = function() {

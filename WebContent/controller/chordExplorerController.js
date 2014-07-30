@@ -49,7 +49,6 @@ angular.module('conchordance')
 		};
 
 		$scope.chordFingeringSelected = function(chordFingering) {
-			console.log("ChordFingering selected");
 			$scope.selectedChordFingering = chordFingering;
 			$scope.$broadcast('chordFingering-selected', chordFingering);
 		};
