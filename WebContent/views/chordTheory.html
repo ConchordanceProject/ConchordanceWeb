@@ -1,0 +1,61 @@
+<div class="container">
+
+	<div ng-controller="chordTheory">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4>Chord Theory Explorer</h4>
+			</div>
+
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-sm-2">
+						<div class="form-group">
+							<label class="control-label">Chord Type</label>
+							<select
+								ng-model="selectedChordType"
+								ng-change="getChord()"
+								ng-options="t.name for t in chordTypes" class="form-control">
+								<option value="">-- Select a Chord Type --</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="row">				
+					<div class="col-sm-4">
+						<label class="control-label">Intervals in Chord</label>
+						<br></br>
+						<span class="note-name"
+							ng-repeat="interval in selectedChordType.intervals"
+							ng-bind-html="intervalNameHtml(interval)">
+						</span>
+					</div>
+				</div>
+				<div class="row">				
+					<div class="col-sm-2">
+						<div class="form-group">
+	                        <label class="control-label">Root</label>
+	                        <select ng-model="selectedRoot"
+	                                ng-options="n for n in notes"
+	                                ng-change="getChord()"
+	                                class="form-control">
+	                            <option value=""> -- Select Root -- </option>
+	                        </select>
+	                    </div>
+					</div>
+				</div>
+				<div class="row">				
+					<div class="col-sm-2">
+						<div class="form-group">
+	                        <label class="control-label">Notes</label>
+	                        <br></br>
+	                        <span class="note-name"
+	                             ng-repeat="note in selectedChord.notes"
+	                             ng-bind-html="noteNameHtml(note)" >
+                        	</span>
+	                    </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

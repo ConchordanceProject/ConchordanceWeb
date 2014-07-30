@@ -1,15 +1,23 @@
 @CHARSET "ISO-8859-1";
 
 body {
-    padding-top: 70px; /* for Bootstrap's fixed top header bar */
+	padding-top: 70px; /* for Bootstrap's fixed top header bar */
 }
 
 .note-name {
 	margin: 2px;
-    font-style: italic;
+	font-style: italic;
 }
 
 .chord-sample {
 	margin: 6px 4px;
 	display: inline-block;
+	width: 120px;
+	height: 150px;
+}
+
+.fretboard {
+	display: inline-block;
+	width: 800px;
+	height: 120px;
 }
