@@ -4,6 +4,7 @@ angular.module('conchordance')
         restrict: 'E',
         scope: {
         	chord: '=fingering',
+        	highlight: '=highlight',
         },
         link: function(scope, element, attrs) {
         	element.addClass('chord-sample');
@@ -13,12 +14,43 @@ angular.module('conchordance')
         	scope.canvas = Raphael(element[0], 0, 0, scope.width, scope.height);
         	scope.canvas.setSize(scope.width, scope.height); // Somehow, the size doesn't take and this is necessary
 
-        	scope.bgColor = "#fff";
+        	// TODO pull these values from CSS somehow
+        	scope.DEFAULT_BG = "#fff";
+        	scope.FRETDOT_MUTED = "#888";
+        	scope.HIGHLIGHT = "#05F";
+        	
+        	scope.bgColor = scope.DEFAULT_BG;
 
-        	scope.mouseover = function() {};
-        	scope.mouseout = function() {};
+        	// Due to the hit box being reconstructed during render(),
+        	// extra hover events are triggered. This logic prevents hover event spam.
+        	scope.ignoreMouseOut = true;
+        	scope.ignoreMouseOver = false;        	
+        	scope.mouseover = function() {        		
+        		if (!scope.ignoreMouseOver) {
+	        		scope.ignoreMouseOver = true;
+	        		scope.ignoreMouseOut = true;
+	        		
+	        		if (scope.highlight) {
+	        			scope.bgColor = scope.HIGHLIGHT;
+	        			scope.render();
+	        		}
+        		}
+        	};
+        	
+        	scope.mouseout = function() {
+        		if (scope.ignoreMouseOut) {
+        			scope.ignoreMouseOut = false;
+        		} else {
+        			scope.ignoreMouseOver = false;
+        			
+        			// Consider this case the "actual" mouseout event
+        			scope.bgColor = scope.DEFAULT_BG;
+        			scope.render();
+        		}
+        	};
+        	
         	scope.click = function() {};
-
+        	
         	scope.drawClef = false;
 
         	scope.renderDiagram = function() {
@@ -42,7 +74,7 @@ angular.module('conchordance')
             	var chordBottom = chordTop + chordHeight;
             	
             	// chord border
-                scope.canvas.rect(chordLeft, chordTop, chordWidth, chordHeight, 0).attr({fill: "#fff", stroke: "#000"});
+                scope.canvas.rect(chordLeft, chordTop, chordWidth, chordHeight, 0).attr({fill: scope.DEFAULT_BG, stroke: "#000"});
                 
                 // position
                 if (scope.chord.position > 0)
@@ -68,9 +100,9 @@ angular.module('conchordance')
         	     		if (fret > -1) {
         	     			var c = scope.canvas.circle(x, y, fretSpacing/4)
         	         			.attr("stroke", "#000")
-        	         			.attr("fill", "#fff");
+        	         			.attr("fill", scope.DEFAULT_BG);
         	     			if (fret > 0) {
-        	     				c.attr("fill", "#888");
+        	     				c.attr("fill", scope.FRETDOT_MUTED);
         	     				if (scope.showFingers)
         	     					scope.canvas.text(x, y, scope.chord.fingers[s])
         	     						.attr("fill", "#fff");
@@ -85,7 +117,6 @@ angular.module('conchordance')
         			.attr("stroke", "none")
         			.attr("fill-opacity", "0");
                 hitbox.hover(scope.mouseover, scope.mouseout);
-                hitbox.click(scope.click);
         	};
 
         	scope.renderTab = function() {
