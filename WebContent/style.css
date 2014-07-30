@@ -21,3 +21,15 @@ body {
 	width: 800px;
 	height: 120px;
 }
+
+.welcome-message{
+    overflow-y: hidden;
+    max-height: 200px; /* approximate max height */
+
+    -webkit-transition:all linear 0.25s;
+    transition:all linear 0.25s;
+}
+
+.welcome-message.ng-hide {
+    max-height: 0;
+}

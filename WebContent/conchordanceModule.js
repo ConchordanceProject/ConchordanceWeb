@@ -1,4 +1,4 @@
-angular.module('conchordance', ['ui.router'])
+angular.module('conchordance', ['ui.router', 'ngAnimate'])
 .factory('$music', function() {
 	return Music;
 })

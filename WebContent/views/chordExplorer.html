@@ -1,7 +1,8 @@
 <div class="container" ng-controller="main">
 
-    <div class="jumbotron"
-      	ng-hide="!showWelcome">
+    <div class="jumbotron welcome-message"
+      	ng-hide="!showWelcome"
+        ng-animate>
         <h1>Welcome to Conchordance.</h1>
     </div>
 
@@ -71,7 +72,7 @@
 
                        <div class="col-sm-4">
                            <br/>
-                           <button type="submit" class="btn btn-primary">Find Chords</button>
+                           <button type="submit" class="btn btn-primary" ng-disabled="searchInProgress">Find Chords <i class="fa" ng-class="{'fa-refresh': searchInProgress, 'fa-spin': searchInProgress}"></i></button>
                        </div>
                    </div>
                </form>

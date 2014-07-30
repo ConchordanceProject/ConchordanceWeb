@@ -11,6 +11,8 @@ angular.module('conchordance')
 		
 		$scope.findChords = function() {
 			$scope.showWelcome = false;
+            $scope.searchInProgress = true;
+            $scope.chordFingerings = [];
 			
 			// Abort if parameters are invalid
 			if ($scope.selectedInstrument == null
@@ -41,6 +43,7 @@ angular.module('conchordance')
 					$music.calcDiagram(results[f]);
 
 				$scope.chordFingerings = results;
+                $scope.searchInProgress = false;
 			});
 		};
 
@@ -70,6 +73,7 @@ angular.module('conchordance')
 		$scope.selectedInstrument = null;
 		$scope.selectedRoot = $scope.notes[0];
 		$scope.selectedChordType = null;
+        $scope.searchInProgress = false;
 
 		// Load the musical data from the server
 		$conchordance.getInstruments()
