@@ -23,6 +23,16 @@ Music = {
 		return this.numerals[interval.major] + this.modifierHtml(interval.modifier);	
 	},
 	
+	vexFlowNoteKeys: function(note) {
+		// Correct for the differing octave numbering between Conchordance and VexFlow
+		var octave;
+		if (note.noteName == "A" || note.noteName == "B")
+			octave = note.octave - 1;
+		else
+			octave = note.octave;
+		return [note.noteName.toLowerCase() + "/" + octave];
+	},
+	
 	calcDiagram: function(chordFingering) {
 		var lowestFret = 9001;
 		var numFingers = 0;
