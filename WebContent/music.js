@@ -26,14 +26,7 @@ Music = {
 	/**
 	 * Creates a VexFlow note for the given note
 	 */
-	vexFlowNote: function(note, duration) {
-		// Correct for the differing octave numbering between Conchordance and VexFlow
-		var octave;
-		if (note.noteName == "A" || note.noteName == "B")
-			octave = note.octave - 1;
-		else
-			octave = note.octave;
-		
+	vexFlowNote: function(note, duration) {		
 		var modifier = "";
 		if (note.modifier == 1)
 			modifier = "#";
@@ -44,7 +37,7 @@ Music = {
 		else if (note.modifier == -2)
 			modifier = "bb";
 		
-		var keys = [note.noteName.toLowerCase() + modifier + "/" + octave];
+		var keys = [note.noteName.toLowerCase() + modifier + "/" + note.octave];
 		var vexNote = new Vex.Flow.StaveNote({keys: keys, duration: (duration+"")});
 	    
 		if (note.modifier != 0)
