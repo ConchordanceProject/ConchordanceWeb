@@ -7,6 +7,19 @@
 			</div>
 
 			<div class="panel-body">
+				<div class="row">				
+					<div class="col-sm-2">
+						<div class="form-group">
+	                        <label class="control-label">Root</label>
+	                        <select ng-model="selectedRoot"
+	                                ng-options="n for n in roots"
+	                                ng-change="getChord()"
+	                                class="form-control">
+	                            <option value=""> -- Select Root -- </option>
+	                        </select>
+	                    </div>
+					</div>
+				</div>
 				<div class="row">
 					<div class="col-sm-2">
 						<div class="form-group">
@@ -33,19 +46,6 @@
 				<div class="row">				
 					<div class="col-sm-2">
 						<div class="form-group">
-	                        <label class="control-label">Root</label>
-	                        <select ng-model="selectedRoot"
-	                                ng-options="n for n in notes"
-	                                ng-change="getChord()"
-	                                class="form-control">
-	                            <option value=""> -- Select Root -- </option>
-	                        </select>
-	                    </div>
-					</div>
-				</div>
-				<div class="row">				
-					<div class="col-sm-2">
-						<div class="form-group">
 	                        <label class="control-label">Notes</label>
 	                        <br></br>
 	                        <span class="note-name"
@@ -53,6 +53,7 @@
 	                             ng-bind-html="noteNameHtml(note)" >
                         	</span>
 	                    </div>
+	                    <scale-staff></scale-staff>
 					</div>
 				</div>
 			</div>

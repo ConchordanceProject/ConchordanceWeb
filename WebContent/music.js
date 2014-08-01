@@ -23,14 +23,47 @@ Music = {
 		return this.numerals[interval.major] + this.modifierHtml(interval.modifier);	
 	},
 	
-	vexFlowNoteKeys: function(note) {
+	/**
+	 * Creates a VexFlow note for the given note
+	 */
+	vexFlowNote: function(note, duration) {
 		// Correct for the differing octave numbering between Conchordance and VexFlow
 		var octave;
 		if (note.noteName == "A" || note.noteName == "B")
 			octave = note.octave - 1;
 		else
 			octave = note.octave;
-		return [note.noteName.toLowerCase() + "/" + octave];
+		
+		var modifier = "";
+		if (note.modifier == 1)
+			modifier = "#";
+		else if (note.modifier == 2)
+			modifier = "##";
+		else if (note.modifier == -1)
+			modifier = "b";
+		else if (note.modifier == -2)
+			modifier = "bb";
+		
+		var keys = [note.noteName.toLowerCase() + modifier + "/" + octave];
+		var vexNote = new Vex.Flow.StaveNote({keys: keys, duration: (duration+"")});
+	    
+		if (note.modifier != 0)
+			vexNote.addAccidental(0, new Vex.Flow.Accidental(modifier));
+		
+		return vexNote;
+	},
+	
+	adjustNotesOctaves: function(notes, octaves) {
+		var newNotes = new Array(notes.length);
+		for (var i = 0; i<notes.length; ++i) {
+			newNotes[i] = {
+				noteName: notes[i].noteName,
+				modifier: notes[i].modifier,
+				octave: notes[i].octave + octaves,
+			};
+		}
+		
+		return newNotes;
 	},
 	
 	calcDiagram: function(chordFingering) {
