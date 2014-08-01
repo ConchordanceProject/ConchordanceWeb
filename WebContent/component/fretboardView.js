@@ -54,8 +54,8 @@ angular.module('conchordance')
             };
 
             scope.render = function() {
-                var strings = scope.instrument.tuning.length;
-                var numFrets = scope.instrument.frets;
+                var strings = scope.instrument == null ? 6 : scope.instrument.tuning.length;
+                var numFrets = scope.instrument == null ? 14 : scope.instrument.frets;
 
                 var fretboardWidth = 700;
                 var fretboardHeight = 100;
