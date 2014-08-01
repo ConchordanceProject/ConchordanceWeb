@@ -2,40 +2,18 @@ angular.module('conchordance')
 .directive('fretboardView', function() {
     return {
         restrict: 'E',
-        link: function(scope, element, attrs) {
-            element.addClass('fretboard');
-            
-            var width = 800;
-            var height = 120;
+        scope: {
+            width: 800,
+            height: 120,
 
-            var FRETDOT_MUTED = "#888"; // TODO somehow derive from CSS
-            var FRETDOT_HIGHLIGHT = "#05F"; // TODO somehow derive from CSS
+            FRETDOT_MUTED: "#888", // TODO somehow derive from CSS
+            FRETDOT_HIGHLIGHT: "#05F", // TODO somehow derive from CSS
         	
-            scope.unscaledFretPositions = [0.0, 0.056, 0.109, 0.159, 0.206, 0.251, 0.293, 0.333, 0.370, 0.405, 0.439, 0.470, 0.5, 0.528, 0.555, 0.580, 0.603, 0.625, 0.646, 0.666, 0.685];
-            scope.scaledFretPositions = new Array(scope.unscaledFretPositions.length);
-            scope.scaledFretPositions[0] = 0;
+            unscaledFretPositions: [0.0, 0.056, 0.109, 0.159, 0.206, 0.251, 0.293, 0.333, 0.370, 0.405, 0.439, 0.470, 0.5, 0.528, 0.555, 0.580, 0.603, 0.625, 0.646, 0.666, 0.685],
+            scaledFretPositions: new Array(scope.unscaledFretPositions.length),
+            //scope.scaledFretPositions[0]: 0;
 
-            scope.canvas = Raphael(element[0], 0, 0, width, height);
-            scope.canvas.setSize(width, height); // Somehow, the size doesn't take and this is necessary
-
-            scope.$on('instrument-selected', function(event, instrument) {
-            	scope.chordFingering = null;
-            	scope.fretboard = null;
-                scope.instrument = instrument;
-                scope.render();
-            });
-
-            scope.$on('fretboard-updated', function(event, fretboard) {
-                scope.fretboard = fretboard;
-                scope.render();
-            });
-
-            scope.$on('chordFingering-selected', function(event, chordFingering) {
-                scope.chordFingering = chordFingering;
-                scope.render();
-            });
-            
-            scope.drawFretdot = function(string, fret, highlight) {
+        	drawFretdot: function(string, fret, highlight) {
             	var y = scope.fretboardTop + string*scope.stringSpacing;
             	var fill = highlight ? FRETDOT_HIGHLIGHT : FRETDOT_MUTED;
 
@@ -51,9 +29,9 @@ angular.module('conchordance')
 						.attr("stroke", "#000")
 	         			.attr("fill", fill);
     			}
-            };
+            },
 
-            scope.render = function() {
+            render: function() {
                 var strings = scope.instrument == null ? 6 : scope.instrument.tuning.length;
                 var numFrets = scope.instrument == null ? 14 : scope.instrument.frets;
 
@@ -119,7 +97,30 @@ angular.module('conchordance')
         		    	scope.drawFretdot(s, f, true);
         		    }
                 }
-            };
-        }
+            },
+        },
+        link: function(scope, element, attrs) {
+            element.addClass('fretboard');
+            
+            scope.$on('instrument-selected', function(event, instrument) {
+            	scope.chordFingering = null;
+            	scope.fretboard = null;
+                scope.instrument = instrument;
+                scope.render();
+            });
+
+            scope.$on('fretboard-updated', function(event, fretboard) {
+                scope.fretboard = fretboard;
+                scope.render();
+            });
+
+            scope.$on('chordFingering-selected', function(event, chordFingering) {
+                scope.chordFingering = chordFingering;
+                scope.render();
+            });
+            
+            scope.canvas = Raphael(element[0], 0, 0, width, height);
+            scope.canvas.setSize(width, height); // Somehow, the size doesn't take and this is necessary
+        },
     };
 });

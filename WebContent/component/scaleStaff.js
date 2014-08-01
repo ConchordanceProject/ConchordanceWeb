@@ -3,15 +3,9 @@ angular.module('conchordance')
     return {
         restrict: 'E',
         templateUrl: 'views/scaleStaff.html',
-        link: function(scope, element, attrs) {
-            scope.$on('set-scale-notes', function(event, notes) {
-            	scope.notes = notes;
-                scope.renderStaff();
-            });
-
-            scope.notes = [];
-
-        	scope.renderStaff = function() {
+        scope: {
+        	notes: [],
+        	render: function() {
             	var canvas = element[0].children[0];
             	var renderer = new Vex.Flow.Renderer(canvas, Vex.Flow.Renderer.Backends.CANVAS);
 
@@ -44,7 +38,13 @@ angular.module('conchordance')
 
 				// Render voice
 				voice.draw(context, stave);
-        	};
+        	},
+        },
+        link: function(scope, element, attrs) {
+            scope.$on('set-scale-notes', function(event, notes) {
+            	scope.notes = notes;
+                scope.render();
+            });
         },
     };
 }]);
