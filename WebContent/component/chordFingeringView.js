@@ -1,15 +1,17 @@
 angular.module('conchordance')
-.directive('chordFingeringView', function() {
+.directive('chordFingeringView', ['$music', function($music) {
 	return {
         restrict: 'E',
         scope: {
         	chord: '=fingering',
         	highlight: '=highlight',
+        	renderMode: '@'
         },
         link: function(scope, element, attrs) {
         	element.addClass('chord-sample');
+        	
         	scope.width = 120;
-        	scope.height = 150;
+        	scope.height = 200;
         	scope.showFingers = false;
         	scope.canvas = Raphael(element[0], 0, 0, scope.width, scope.height);
         	scope.canvas.setSize(scope.width, scope.height); // Somehow, the size doesn't take and this is necessary
@@ -25,7 +27,7 @@ angular.module('conchordance')
         	// extra hover events are triggered. This logic prevents hover event spam.
         	scope.ignoreMouseOut = true;
         	scope.ignoreMouseOver = false;        	
-        	scope.mouseover = function() {        		
+        	scope.mouseover = function() {
         		if (!scope.ignoreMouseOver) {
 	        		scope.ignoreMouseOver = true;
 	        		scope.ignoreMouseOut = true;
@@ -120,154 +122,49 @@ angular.module('conchordance')
         	};
 
         	scope.renderTab = function() {
-        		scope.canvas.clear();
-
-        		// Background rect
-        		scope.canvas.rect(0, 0, scope.width, scope.height).attr({fill: scope.bgColor, stroke: "none"});
-
-        		var numStrings = scope.chord == null ? 6 : scope.chord.numStrings;
-        		var tabHeight = Math.min(60, scope.height-10);
-        		var topLine = (scope.height - tabHeight) / 2;
-        		var stringSpacing = tabHeight / (numStrings-1);
-        		var centerX = scope.width/2;
-
-        		var textWidth = 12;
-
-        		// strings
-        		for (var s=0; s<numStrings; ++s) {
-        			// string
-                	var stringY = topLine+s*stringSpacing;
-                	scope.canvas.path("M0,"+stringY + "H"+scope.width);
-        		}
-
-        		// double-barline
-        		scope.canvas.path("M"+(scope.width-1)+","+topLine + "V"+(topLine+tabHeight));
-        		scope.canvas.path("M"+(scope.width-5)+","+topLine + "V"+(topLine+tabHeight));
-
-        		// "TAB"
-        		if (scope.drawClef) {
-        			var sizeAttr = (tabHeight/3)+"px";
-        			scope.canvas.text(10, topLine+tabHeight/6, "T").attr("font-size", sizeAttr);
-        			scope.canvas.text(10, topLine+tabHeight/2, "A").attr("font-size", sizeAttr);
-        			scope.canvas.text(10, topLine+5*tabHeight/6, "B").attr("font-size", sizeAttr);
-        		}
-
-                if (scope.chord != null) {
-                	// frets
-            		for (var s=0; s<numStrings; ++s) {
-                    	var stringY = topLine+s*stringSpacing;
-                		if (scope.chord.absoluteFrets[s] >= 0) {
-                			scope.canvas.rect(centerX-textWidth/2, stringY-stringSpacing/2, textWidth, stringSpacing)
-                				.attr("fill", scope.bgColor)
-                				.attr("stroke", "none");
-                			scope.canvas.text(centerX, stringY, scope.chord.absoluteFrets[s]);
-                		}
-                	}
-        		}
-
-        		// Mouse hit area, top layer and transparent
-                var hitbox = scope.canvas.rect(0, 0, scope.width, scope.height, 0)
-        			.attr("fill", "#fff")
-        			.attr("stroke", "none")
-        			.attr("fill-opacity", "0");
-                hitbox.hover(scope.mouseover, scope.mouseout);
-                hitbox.click(scope.click);
+        		
         	};
 
         	scope.renderNotes = function() {
-        		scope.canvas.clear();
+        		var renderer = new Vex.Flow.Renderer(element[0], Vex.Flow.Renderer.Backends.RAPHAEL);
 
-        		// Background rect
-        		scope.canvas.rect(0, 0, scope.width, scope.height).attr({fill: scope.bgColor, stroke: "none"});
+				var ctx = renderer.getContext();
+				var stave = new Vex.Flow.Stave(0, 35, 120);
+				stave.setContext(ctx).draw();
+				
+				stave.addClef("treble").draw();
+				
+				var chordNotes = new Array(scope.chord.sortedNotes.length);
+				for (var i = 0; i<chordNotes.length; ++i) {
+					chordNotes[i] = scope.chord.sortedNotes[i].note;
+				}
+				
+				var notes = [$music.vexFlowChord(chordNotes)];
+				
+				// Create a voice in 4/4
+				  var voice = new Vex.Flow.Voice({
+				    num_beats: 1,
+				    beat_value: 4,
+				    resolution: Vex.Flow.RESOLUTION
+				  });
 
-        		var staffHeight = 40;
-        		var staffTop = (scope.height-staffHeight)/2;
-        		var staffSpacing = staffHeight / 4;
+				  // Add notes to voice
+				  voice.addTickables(notes);
 
-        		//draw staff lines
-        		for (var s = 0; s<5; ++s) {
-        			var staffY = staffTop+s*staffSpacing;
-                	scope.canvas.path("M0,"+staffY + "H"+scope.width);
-        		}
+				  new Vex.Flow.Formatter()
+				  	.joinVoices([voice])
+				  	.format([voice], 120);
 
-        		// double-barline
-        		scope.canvas.path("M"+(scope.width-1)+","+staffTop + "V"+(staffTop+staffHeight));
-        		scope.canvas.path("M"+(scope.width-5)+","+staffTop + "V"+(staffTop+staffHeight));
-
-        		// Treble clef
-        		if (scope.drawClef) {
-        			scope.canvas.text(20, staffTop+staffHeight, "&")
-        				.attr("font-family", "MusicalSymbols")
-        				.attr("font-size", staffHeight+"px");
-        		}
-
-        		var centerX = scope.width/2;
-        		var ledgerLineWidth = staffSpacing+staffSpacing/2;
-        		var octaveStaff = 7;
-        		var prevPos = 100000;
-        		var noteWidth = staffSpacing;
-        		var accidentalX = centerX - noteWidth;
-
-        		// Draw notes
-        		if (scope.chord != null) {
-        			for (var i = 0; i<scope.chord.notes.length; ++i) {
-        				var n = scope.chord.notes[i].note;
-        				var staffPos = 5 - n.note - (n.octave-5)*octaveStaff;
-        				var x = centerX + (prevPos - staffPos <= 1 ? noteWidth : 0);
-        				var y = staffTop+staffPos*staffSpacing/2;
-
-        				prevPos = staffPos;
-
-        				scope.canvas.ellipse(x, y, noteWidth/2, staffSpacing/2-1)
-        					.attr("fill", "#000")
-        					.attr("stroke", "none");
-
-        				// accidentals
-        				if (n.modifier == 1)
-        					scope.canvas.text(accidentalX, y-staffSpacing/2, "#")
-        						.attr("font-family", "Accidentals")
-        						.attr("font-size", (staffSpacing*2)+"px");
-        				if (n.modifier == 2)
-        					scope.canvas.text(accidentalX, y-staffSpacing/2, "x")
-        					.attr("font-family", "Accidentals")
-        					.attr("font-size", (staffSpacing*2)+"px");
-        				if (n.modifier == -1)
-        					scope.canvas.text(accidentalX, y-staffSpacing/2, "b")
-        					.attr("font-family", "Accidentals")
-        					.attr("font-size", (staffSpacing*2)+"px");
-        				if (n.modifier == -2)
-        					scope.canvas.text(accidentalX, y-staffSpacing/2, "B")
-        					.attr("font-family", "Accidentals")
-        					.attr("font-size", (staffSpacing*2)+"px");
-
-        				// upper ledger lines
-        				for (var p = -2; p >= staffPos; p-=2) {
-        					var lineY = staffTop+p*staffSpacing/2;
-        		        	scope.canvas.path("M" + (centerX-ledgerLineWidth/2)
-        		        			+","+lineY + "H"+(centerX + ledgerLineWidth/2));
-        				}
-
-        				// lower ledger lines
-        				for (var p = 10; p <= staffPos; p+=2) {
-        					var lineY = staffTop+p*staffSpacing/2;
-        		        	scope.canvas.path("M" + (centerX-ledgerLineWidth/2)
-        		        			+","+lineY + "H"+(centerX + ledgerLineWidth/2));
-        				}
-        			}
-        		}
-
-        		// Mouse hit area, top layer and transparent
-                var hitbox = scope.canvas.rect(0, 0, scope.width, scope.height, 0)
-        			.attr("fill", "#fff")
-        			.attr("stroke", "none")
-        			.attr("fill-opacity", "0");
-                hitbox.hover(scope.mouseover, scope.mouseout);
-                hitbox.click(scope.click);
+				  // Render voice
+				  voice.draw(ctx, stave);
         	};
 
-        	scope.render = scope.renderDiagram;
+        	if (scope.renderMode == 'notes')
+        		scope.render = scope.renderNotes;
+        	if (scope.renderMode == 'diagram')
+        		scope.render = scope.renderDiagram;
         	
         	scope.render();
         }
     };
-});
+}]);
