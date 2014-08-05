@@ -17,10 +17,8 @@
 				            class="form-control">
 				        <option value=""> -- Select an Instrument -- </option>
 				    </select>
-				    <span class="note-name text-muted"
-				          ng-repeat="note in selectedInstrument.tuning"
-				          ng-bind-html="noteNameHtml(note)">
-				    </span>
+				    <tuning-hint instrument="selectedInstrument">
+				    </tuning-hint>
 				</div>
 				<br/>
 				<fretboard-view></fretboard-view>
