@@ -1,18 +1,18 @@
 angular.module('conchordance').service('$conchordance', function($http) {
-	var requestBase = "http://api.conchordance.com:8080/ConchordanceAPI/";
+	var requestBase = "http://localhost:8080/";
 	this.getInstruments = function() {
 		return $http({
 			method: 'GET',
-			url: requestBase + 'instrument/GetInstruments',
+			url: requestBase + 'instruments',
 		});
 	};
 	this.getFretboard = function(instrument, root, type) {
 		return $http({
 			method: 'GET',
-			url: requestBase + 'instrument/GetFretboard',
+			url: requestBase + 'fretboards',
 			params: {
 				instrument: instrument,
-				chordType: type,
+				type: type,
 				root: root,
 			},
 		});
@@ -20,16 +20,16 @@ angular.module('conchordance').service('$conchordance', function($http) {
 	this.getChordTypes = function() {
 		return $http({
 			method: 'GET',
-			url: requestBase + 'chord/GetChordTypes',
+			url: requestBase + 'chords/types',
 		});
 	};
 	this.getChords = function(instrument, root, type) {
 		return $http({
 			method: 'GET',
-			url: requestBase + 'chord/GetChords',
+			url: requestBase + 'chords/fingerings',
 			params: {
 				instrument: instrument,
-				chordType: type,
+				type: type,
 				root: root,
 			},
 		});
@@ -37,9 +37,9 @@ angular.module('conchordance').service('$conchordance', function($http) {
 	this.getChord = function(root, type) {
 		return $http({
 			method: 'GET',
-			url: requestBase + 'chord/GetChord',
+			url: requestBase + 'chords',
 			params: {
-				chordType: type,
+				type: type,
 				root: root,
 			},
 		});
