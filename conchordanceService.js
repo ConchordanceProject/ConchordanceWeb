@@ -1,9 +1,9 @@
 angular.module('conchordance').service('$conchordance', function($http) {
-	var requestBase = "http://localhost:8080/";
+	var requestBase = "http://api.conchordance.com/";
 	this.getInstruments = function() {
 		return $http({
 			method: 'GET',
-			url: requestBase + 'instruments',
+			url: requestBase + 'instruments'
 		});
 	};
 	this.getFretboard = function(instrument, root, type) {
@@ -13,14 +13,14 @@ angular.module('conchordance').service('$conchordance', function($http) {
 			params: {
 				instrument: instrument,
 				type: type,
-				root: root,
-			},
+				root: root
+			}
 		});
 	};
 	this.getChordTypes = function() {
 		return $http({
 			method: 'GET',
-			url: requestBase + 'chords/types',
+			url: requestBase + 'chords/types'
 		});
 	};
 	this.getChords = function(instrument, root, type) {
@@ -30,8 +30,8 @@ angular.module('conchordance').service('$conchordance', function($http) {
 			params: {
 				instrument: instrument,
 				type: type,
-				root: root,
-			},
+				root: root
+			}
 		});
 	};
 	this.getChord = function(root, type) {
@@ -40,8 +40,8 @@ angular.module('conchordance').service('$conchordance', function($http) {
 			url: requestBase + 'chords',
 			params: {
 				type: type,
-				root: root,
-			},
+				root: root
+			}
 		});
 	};
 });
