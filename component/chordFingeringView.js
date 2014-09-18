@@ -9,54 +9,34 @@ angular.module('conchordance')
         },
         link: function(scope, element, attrs) {
         	element.addClass('chord-sample');
-        	
+
         	scope.width = 120;
         	scope.height = 200;
         	scope.showFingers = false;
-        	scope.canvas = Raphael(element[0], 0, 0, scope.width, scope.height);
-        	scope.canvas.setSize(scope.width, scope.height); // Somehow, the size doesn't take and this is necessary
+        	scope.paper = Raphael(element[0], 0, 0, scope.width, scope.height);
+        	scope.paper.setSize(scope.width, scope.height); // Somehow, the size doesn't take and this is necessary
 
-        	// TODO pull these values from CSS somehow
+            // TODO pull these values from CSS somehow
         	scope.DEFAULT_BG = "#fff";
         	scope.FRETDOT_MUTED = "#888";
         	scope.HIGHLIGHT = "#05F";
         	
         	scope.bgColor = scope.DEFAULT_BG;
 
-        	// Due to the hit box being reconstructed during render(),
-        	// extra hover events are triggered. This logic prevents hover event spam.
-        	scope.ignoreMouseOut = true;
-        	scope.ignoreMouseOver = false;        	
-        	scope.mouseover = function() {
-        		if (!scope.ignoreMouseOver) {
-	        		scope.ignoreMouseOver = true;
-	        		scope.ignoreMouseOut = true;
-	        		
-	        		if (scope.highlight) {
-	        			scope.bgColor = scope.HIGHLIGHT;
-	        			scope.render();
-	        		}
-        		}
+        	scope.mouseover = function(e) {
+                scope.bgColor = scope.HIGHLIGHT;
+                scope.render();
         	};
         	
-        	scope.mouseout = function() {
-        		if (scope.ignoreMouseOut) {
-        			scope.ignoreMouseOut = false;
-        		} else {
-        			scope.ignoreMouseOver = false;
-        			
-        			// Consider this case the "actual" mouseout event
-        			scope.bgColor = scope.DEFAULT_BG;
-        			scope.render();
-        		}
+        	scope.mouseout = function(e) {
+                scope.bgColor = scope.DEFAULT_BG;
+                scope.render();
         	};
-        	
-        	scope.click = function() {};
-        	
+
         	scope.drawClef = false;
 
         	scope.renderDiagram = function() {
-        		scope.canvas.clear();
+        		scope.paper.clear();
 
         		var numFrets = 5;
         		var numStrings = scope.chord == null ? 6 : scope.chord.numStrings;
@@ -65,7 +45,7 @@ angular.module('conchordance')
             	var chordHeight = Math.min(100, scope.height-10);
 
         		// Background rect
-        		scope.canvas.rect(0, 0, scope.width, scope.height).attr({fill: scope.bgColor, stroke: "none"});
+        		scope.paper.rect(0, 0, scope.width, scope.height).attr({fill: scope.bgColor, stroke: "none"});
             	
             	var fretSpacing = chordHeight/numFrets;
             	var stringSpacing = chordWidth/(numStrings-1);
@@ -76,21 +56,21 @@ angular.module('conchordance')
             	var chordBottom = chordTop + chordHeight;
             	
             	// chord border
-                scope.canvas.rect(chordLeft, chordTop, chordWidth, chordHeight, 0).attr({fill: scope.DEFAULT_BG, stroke: "#000"});
+                scope.paper.rect(chordLeft, chordTop, chordWidth, chordHeight, 0).attr({fill: scope.DEFAULT_BG, stroke: "#000"});
                 
                 // position
                 if (scope.chord.position > 0)
-                	scope.canvas.text(chordLeft-12, chordTop+10, scope.chord.position).attr("font-size", 10);
+                	scope.paper.text(chordLeft-12, chordTop+10, scope.chord.position).attr("font-size", 10);
                 
              	// frets
                 for (var f=1; f<numFrets; ++f) {
                 	var fretY = chordTop+f*fretSpacing;
-                	scope.canvas.path("M"+chordLeft+","+fretY+"H"+chordRight);
+                	scope.paper.path("M"+chordLeft+","+fretY+"H"+chordRight);
                 }
              	// strings
                 for (var s=1; s<numStrings-1; ++s) {
                 	var stringX = chordLeft+s*stringSpacing;
-                	scope.canvas.path("M"+stringX+","+chordTop+"V"+chordBottom);
+                	scope.paper.path("M"+stringX+","+chordTop+"V"+chordBottom);
                 }
              	
                 // fretdots
@@ -100,25 +80,18 @@ angular.module('conchordance')
         	     		var x = chordLeft+(scope.chord.numStrings-s-1)*stringSpacing;
         	     		var y = chordTop+fret*fretSpacing-fretSpacing/2;
         	     		if (fret > -1) {
-        	     			var c = scope.canvas.circle(x, y, fretSpacing/4)
+        	     			var c = scope.paper.circle(x, y, fretSpacing/4)
         	         			.attr("stroke", "#000")
         	         			.attr("fill", scope.DEFAULT_BG);
         	     			if (fret > 0) {
         	     				c.attr("fill", scope.FRETDOT_MUTED);
         	     				if (scope.showFingers)
-        	     					scope.canvas.text(x, y, scope.chord.fingers[s])
+        	     					scope.paper.text(x, y, scope.chord.fingers[s])
         	     						.attr("fill", "#fff");
         	     			}
         	     		}
         	     	}
                 }
-             	
-             	// Mouse hit area, top layer and transparent
-                var hitbox = scope.canvas.rect(0, 0, scope.width, scope.height, 0)
-        			.attr("fill", "#fff")
-        			.attr("stroke", "none")
-        			.attr("fill-opacity", "0");
-                hitbox.hover(scope.mouseover, scope.mouseout);
         	};
 
         	scope.renderTab = function() {
