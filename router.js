@@ -11,6 +11,10 @@ angular.module('conchordance').config(function($stateProvider, $urlRouterProvide
             url: '/chordTheory',
             templateUrl: 'views/chordTheory.html'
         })
+        .state('chordDetails', {
+            url: '/chordDetails',
+            templateUrl: 'views/chordDetails.html'
+        })
         .state('instruments', {
             url: '/instruments',
             templateUrl: 'views/instrumentExplorer.html'

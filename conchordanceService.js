@@ -1,5 +1,5 @@
 angular.module('conchordance').service('$conchordance', function($http) {
-	var requestBase = "http://api.conchordance.com/";
+    var requestBase = "http://api.conchordance.com/";
 	this.getInstruments = function() {
 		return $http({
 			method: 'GET',

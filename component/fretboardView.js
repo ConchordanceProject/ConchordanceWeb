@@ -2,9 +2,42 @@ angular.module('conchordance')
 .directive('fretboardView', function() {
     return {
         restrict: 'E',
+        scope: {
+            /**
+             * Specifies the dimensions and tuning of the instrument
+             */
+            instrument: '=',
+
+            /**
+             * The layout of the fretboard (chord or scale to display)
+             */
+            fretboard: '=',
+
+            /**
+             * Highlighted position
+             */
+            chordFingering: '='
+        },
         link: function(scope, element, attrs) {
-            element.addClass('fretboard');
-            
+            var strings = 6;
+            var numFrets = 14;
+
+            scope.$watch('instrument', function(newValue, oldValue) {
+                if (newValue != null) {
+                    strings = newValue.tuning.length;
+                    numFrets = newValue.frets;
+                }
+                scope.render();
+            });
+
+            scope.$watch('fretboard', function(newValue, oldValue) {
+                scope.render();
+            });
+
+            scope.$watch('chordFingering', function(newValue, oldValue) {
+                scope.render();
+            });
+
             var width = 800;
             var height = 120;
 
@@ -18,23 +51,6 @@ angular.module('conchordance')
             scope.canvas = Raphael(element[0], 0, 0, width, height);
             scope.canvas.setSize(width, height); // Somehow, the size doesn't take and this is necessary
 
-            scope.$on('instrument-selected', function(event, instrument) {
-            	scope.chordFingering = null;
-            	scope.fretboard = null;
-                scope.instrument = instrument;
-                scope.render();
-            });
-
-            scope.$on('fretboard-updated', function(event, fretboard) {
-                scope.fretboard = fretboard;
-                scope.render();
-            });
-
-            scope.$on('chordFingering-selected', function(event, chordFingering) {
-                scope.chordFingering = chordFingering;
-                scope.render();
-            });
-            
             scope.drawFretdot = function(string, fret, highlight) {
             	var y = scope.fretboardTop + string*scope.stringSpacing;
             	var fill = highlight ? FRETDOT_HIGHLIGHT : FRETDOT_MUTED;
@@ -54,9 +70,6 @@ angular.module('conchordance')
             };
 
             scope.render = function() {
-                var strings = scope.instrument == null ? 6 : scope.instrument.tuning.length;
-                var numFrets = scope.instrument == null ? 14 : scope.instrument.frets;
-
                 var fretboardWidth = 700;
                 var fretboardHeight = 100;
 
