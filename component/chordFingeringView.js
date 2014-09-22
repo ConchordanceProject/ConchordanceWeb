@@ -12,26 +12,6 @@ angular.module('conchordance')
 
         	scope.width = 120;
         	scope.height = 200;
-        	scope.showFingers = false;
-
-            // TODO pull these values from CSS somehow
-        	scope.DEFAULT_BG = "#fff";
-        	scope.FRETDOT_MUTED = "#888";
-        	scope.HIGHLIGHT = "#05F";
-        	
-        	scope.bgColor = scope.DEFAULT_BG;
-
-        	scope.mouseover = function(e) {
-                scope.bgColor = scope.HIGHLIGHT;
-                scope.render();
-        	};
-        	
-        	scope.mouseout = function(e) {
-                scope.bgColor = scope.DEFAULT_BG;
-                scope.render();
-        	};
-
-        	scope.drawClef = false;
 
         	scope.renderDiagram = function() {
         		var numFrets = 5;
