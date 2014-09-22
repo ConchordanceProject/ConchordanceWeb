@@ -46,7 +46,7 @@ Music = {
     vexFlowTabChord: function(chordFingering) {
         var positions = new Array();
         for (var string = 0; string<chordFingering.fingers.length; ++string) {
-            var fret = chordFingering.absoluteFrets[string];
+            var fret = chordFingering.capoRelativeFrets[string];
             if (fret != -1)
                 positions.push({str: string+1, fret: fret});
         }
