@@ -55,6 +55,10 @@ angular.module('conchordance')
                 svg.line(chordLeft, chordTop, chordRight, chordTop);
                 svg.line(chordLeft, chordBottom, chordRight, chordBottom);
 
+                // chord position number
+                if (scope.chord.position > 0)
+                    svg.text(scope.chord.position, chordLeft-17, chordTop+10, {class: "chord-position"});
+
                 // frets
                 for (var f=1; f<numFrets; ++f) {
                     var fretY = chordTop+f*fretSpacing;
