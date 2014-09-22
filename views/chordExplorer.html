@@ -18,7 +18,6 @@
 
                <div class="row">
                    <div class="col-sm-4">
-
                        <div class="form-group">
                            <label class="control-label">
                                Instrument
@@ -32,10 +31,23 @@
                            <tuning-hint instrument="selectedInstrument">
                            </tuning-hint>
                        </div>
-
                    </div>
-                   <div class="col-sm-2">
 
+                   <div class="col-sm-2">
+                       <div class="form-group">
+                           <label class="control-label">
+                               Root
+                           </label>
+                           <select ng-model="selectedRoot"
+                                   ng-options="n for n in notes"
+                                   ng-change="rootSelected()"
+                                   class="form-control">
+                               <option value=""> -- Select Root -- </option>
+                           </select>
+                       </div>
+                   </div>
+
+                   <div class="col-sm-2">
                        <div class="form-group">
                            <label class="control-label">
                                Chord Type
@@ -51,21 +63,6 @@
                                  ng-bind-html="intervalNameHtml(interval)">
                            </span>
                        </div>
-
-                   </div>
-                   <div class="col-sm-2">
-                       <div class="form-group">
-                           <label class="control-label">
-                               Root
-                           </label>
-                           <select ng-model="selectedRoot"
-                                   ng-options="n for n in notes"
-                                   ng-change="rootSelected()"
-                                   class="form-control">
-                               <option value=""> -- Select Root -- </option>
-                           </select>
-                       </div>
-
                    </div>
 
                    <div class="col-sm-4">
