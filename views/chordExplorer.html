@@ -6,78 +6,81 @@
         <h1>Welcome to Conchordance.</h1>
     </div>
 
-       <div class="panel panel-default">
+   <div class="panel panel-default">
 
-           <div class="panel-heading">
-               <h4>Chord Explorer</h4>
-           </div>
-
-           <div class="panel-body">
-
-               <form ng-submit="findChords()" role="form" class="form">
-
-                   <div class="row">
-                       <div class="col-sm-4">
-
-                           <div class="form-group">
-                               <label class="control-label">
-                                   Instrument
-                               </label>
-                               <select ng-model="selectedInstrument"
-                                       ng-options="i.name for i in instruments"
-                                       ng-change="instrumentSelected()"
-                                       class="form-control">
-                                   <option value=""> -- Select an Instrument -- </option>
-                               </select>
-                               <tuning-hint instrument="selectedInstrument">
-                               </tuning-hint>
-                           </div>
-
-                       </div>
-                       <div class="col-sm-2">
-
-                           <div class="form-group">
-                               <label class="control-label">
-                                   Chord Type
-                               </label>
-                               <select ng-model="selectedChordType"
-                                       ng-options="t.name for t in chordTypes"
-                                       ng-change="chordTypeSelected()"
-                                       class="form-control">
-                                   <option value=""> -- Select a Chord Type -- </option>
-                               </select>
-                               <span class="note-name text-muted"
-                                     ng-repeat="interval in selectedChordType.intervals"
-                                     ng-bind-html="intervalNameHtml(interval)">
-                               </span>
-                           </div>
-
-                       </div>
-                       <div class="col-sm-2">
-                           <div class="form-group">
-                               <label class="control-label">
-                                   Root
-                               </label>
-                               <select ng-model="selectedRoot"
-                                       ng-options="n for n in notes"
-                                       ng-change="rootSelected()"
-                                       class="form-control">
-                                   <option value=""> -- Select Root -- </option>
-                               </select>
-                           </div>
-
-                       </div>
-
-                       <div class="col-sm-4">
-                           <br/>
-                           <button type="submit" class="btn btn-primary" ng-disabled="searchInProgress">Find Chords <i class="fa" ng-class="{'fa-refresh': searchInProgress, 'fa-spin': searchInProgress}"></i></button>
-                       </div>
-                   </div>
-               </form>
-           </div>
+       <div class="panel-heading">
+           <h4>Chord Explorer</h4>
        </div>
+
+       <div class="panel-body">
+
+           <form ng-submit="findChords()" role="form" class="form">
+
+               <div class="row">
+                   <div class="col-sm-4">
+
+                       <div class="form-group">
+                           <label class="control-label">
+                               Instrument
+                           </label>
+                           <select ng-model="instrumentChooserSelection"
+                                   ng-options="i.name for i in instruments"
+                                   ng-change="instrumentSelected()"
+                                   class="form-control">
+                               <option value=""> -- Select an Instrument -- </option>
+                           </select>
+                           <tuning-hint instrument="selectedInstrument">
+                           </tuning-hint>
+                       </div>
+
+                   </div>
+                   <div class="col-sm-2">
+
+                       <div class="form-group">
+                           <label class="control-label">
+                               Chord Type
+                           </label>
+                           <select ng-model="selectedChordType"
+                                   ng-options="t.name for t in chordTypes"
+                                   ng-change="chordTypeSelected()"
+                                   class="form-control">
+                               <option value=""> -- Select a Chord Type -- </option>
+                           </select>
+                           <span class="note-name text-muted"
+                                 ng-repeat="interval in selectedChordType.intervals"
+                                 ng-bind-html="intervalNameHtml(interval)">
+                           </span>
+                       </div>
+
+                   </div>
+                   <div class="col-sm-2">
+                       <div class="form-group">
+                           <label class="control-label">
+                               Root
+                           </label>
+                           <select ng-model="selectedRoot"
+                                   ng-options="n for n in notes"
+                                   ng-change="rootSelected()"
+                                   class="form-control">
+                               <option value=""> -- Select Root -- </option>
+                           </select>
+                       </div>
+
+                   </div>
+
+                   <div class="col-sm-4">
+                       <br/>
+                       <button type="submit" class="btn btn-primary" ng-disabled="searchInProgress">Find Chords <i class="fa" ng-class="{'fa-refresh': searchInProgress, 'fa-spin': searchInProgress}"></i></button>
+                   </div>
+               </div>
+           </form>
+       </div>
+   </div>
        
-	<fretboard-view></fretboard-view>
+	<fretboard-view
+            instrument="selectedInstrument"
+            fretboard="fretboard">
+	</fretboard-view>
 
 	<div class="text-muted pull-right" ng-show="chordFingerings.length > 0">
 		{{chordFingerings.length}} chords found</div>

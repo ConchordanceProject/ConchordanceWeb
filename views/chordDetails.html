@@ -1,0 +1,32 @@
+<div class="container" ng-controller="chordDetails">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 ng-bind-html="trust(chordName)">
+            </h4>
+            <tuning-hint instrument="selectedInstrument">
+            </tuning-hint>
+        </div>
+    </div>
+
+    <fretboard-view instrument="selectedInstrument"
+                    chord-fingering="selectedChordFingering">
+    </fretboard-view>
+
+    <br/>
+    <br/>
+    <div class="row">
+        <chord-fingering-view
+                fingering="selectedChordFingering"
+                render-mode="diagram">
+        </chord-fingering-view>
+        <chord-fingering-view
+                fingering="selectedChordFingering"
+                render-mode="notes">
+        </chord-fingering-view>
+        <chord-fingering-view
+                fingering="selectedChordFingering"
+                render-mode="tab">
+        </chord-fingering-view>
+    </div>
+    <br/>
+</div>

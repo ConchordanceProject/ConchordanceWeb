@@ -22,6 +22,33 @@ body {
 	height: 120px;
 }
 
+.fret {
+    stroke-width: 1px;
+    stroke: #000;
+}
+
+.fretdot {
+    stroke-width: 1px;
+    fill: #888;
+}
+.fretdot.open {
+    stroke-width: 1px;
+    fill: white;
+}
+
+.string {
+    stroke-width: 1px;
+    stroke: #000;
+}
+
+.chord-position {
+    font-family: "Arial";
+    font-style: normal;
+    font-weight: normal;
+    stroke-width: 1px;
+    font-size: 10px;
+}
+
 .welcome-message{
     overflow-y: hidden;
     max-height: 200px; /* approximate max height */

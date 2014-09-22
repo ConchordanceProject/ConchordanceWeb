@@ -1,6 +1,6 @@
 angular.module('conchordance')
-.controller('main', ['$scope', '$sce', '$music', '$conchordance', 
-    function($scope, $sce, $music, $conchordance) {
+.controller('main', ['$scope', '$sce', '$state', '$music', '$conchordance',
+    function($scope, $sce, $state, $music, $conchordance) {
 		$scope.noteNameHtml = function(interval) {
 			return $sce.trustAsHtml($music.noteNameHtml(interval));	
 		};
@@ -28,8 +28,7 @@ angular.module('conchordance')
 				$scope.selectedRoot,
 				$scope.selectedChordType.name
 			).success(function(result) {
-				// TODO it would be better to directly inform the freboardView component than to broadcast
-				$scope.$broadcast('fretboard-updated', result);
+				$scope.fretboard = result;
 			});
 			
 			// Search chords from webservice
@@ -48,7 +47,7 @@ angular.module('conchordance')
 		};
 
 		$scope.instrumentSelected = function() {
-			$scope.$broadcast('instrument-selected', $scope.selectedInstrument);
+            $scope.setSelectedInstrument($scope.instrumentChooserSelection);
             $scope.chordFingerings = [];
         };
 
@@ -61,8 +60,8 @@ angular.module('conchordance')
         };
 
 		$scope.chordFingeringSelected = function(chordFingering) {
-			$scope.selectedChordFingering = chordFingering;
-			$scope.$broadcast('chordFingering-selected', chordFingering);
+            $scope.setSelectedChordFingering(chordFingering);
+            $state.go('chordDetails');
 		};
 	
 		$scope.showWelcome = true;
@@ -70,7 +69,7 @@ angular.module('conchordance')
 		$scope.instruments = [];
 		$scope.chordTypes = [];
 		$scope.chordFingerings = [];
-		$scope.selectedInstrument = null;
+		$scope.instrumentChooserSelection = null;
 		$scope.selectedRoot = $scope.notes[0];
 		$scope.selectedChordType = null;
         $scope.searchInProgress = false;
@@ -79,7 +78,7 @@ angular.module('conchordance')
 		$conchordance.getInstruments()
 		.success(function(results) {
 			$scope.instruments = results;
-			$scope.selectedInstrument = results[0];
+			$scope.instrumentChooserSelection = results[0];
             $scope.instrumentSelected();
         });
 
