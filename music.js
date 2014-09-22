@@ -48,7 +48,7 @@ Music = {
         for (var string = 0; string<chordFingering.fingers.length; ++string) {
             var fret = chordFingering.absoluteFrets[string];
             if (fret != -1)
-                positions.push({string: string, fret: fret});
+                positions.push({str: string+1, fret: fret});
         }
         return new Vex.Flow.TabNote({positions: positions, duration: "q"});
     },

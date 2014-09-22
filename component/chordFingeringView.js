@@ -91,7 +91,7 @@ angular.module('conchordance')
 
                 var ctx = renderer.getContext();
                 // Create and draw the tablature stave
-                var tabstave = new Vex.Flow.TabStave(10, 0, 500);
+                var tabstave = new Vex.Flow.TabStave(0, 16, 120);
                 tabstave.addTabGlyph();
                 tabstave.setContext(ctx).draw();
 
