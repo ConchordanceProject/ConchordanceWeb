@@ -42,6 +42,16 @@ Music = {
 			return "bb";
 		return "";
 	},
+
+    vexFlowTabChord: function(chordFingering) {
+        var positions = new Array();
+        for (var string = 0; string<chordFingering.fingers.length; ++string) {
+            var fret = chordFingering.absoluteFrets[string];
+            if (fret != -1)
+                positions.push({string: string, fret: fret});
+        }
+        return new Vex.Flow.TabNote({positions: positions, duration: "q"});
+    },
 	
 	vexFlowChord: function(notes) {
 		// Build the keys element for the notes

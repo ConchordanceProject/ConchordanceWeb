@@ -13,8 +13,6 @@ angular.module('conchordance')
         	scope.width = 120;
         	scope.height = 200;
         	scope.showFingers = false;
-        	scope.paper = Raphael(element[0], 0, 0, scope.width, scope.height);
-        	scope.paper.setSize(scope.width, scope.height); // Somehow, the size doesn't take and this is necessary
 
             // TODO pull these values from CSS somehow
         	scope.DEFAULT_BG = "#fff";
@@ -36,66 +34,67 @@ angular.module('conchordance')
         	scope.drawClef = false;
 
         	scope.renderDiagram = function() {
-        		scope.paper.clear();
-
         		var numFrets = 5;
         		var numStrings = scope.chord == null ? 6 : scope.chord.numStrings;
 
         		var chordWidth = Math.min(80, scope.width-20);
             	var chordHeight = Math.min(100, scope.height-10);
 
-        		// Background rect
-        		scope.paper.rect(0, 0, scope.width, scope.height).attr({fill: scope.bgColor, stroke: "none"});
-            	
-            	var fretSpacing = chordHeight/numFrets;
-            	var stringSpacing = chordWidth/(numStrings-1);
+                var fretSpacing = chordHeight/numFrets;
+                var stringSpacing = chordWidth/(numStrings-1);
 
-            	var chordLeft = (scope.width - chordWidth)/2;
-            	var chordRight = chordLeft + chordWidth;
-            	var chordTop = (scope.height - chordHeight)/2;
-            	var chordBottom = chordTop + chordHeight;
-            	
-            	// chord border
-                scope.paper.rect(chordLeft, chordTop, chordWidth, chordHeight, 0).attr({fill: scope.DEFAULT_BG, stroke: "#000"});
-                
-                // position
-                if (scope.chord.position > 0)
-                	scope.paper.text(chordLeft-12, chordTop+10, scope.chord.position).attr("font-size", 10);
-                
-             	// frets
+                var chordLeft = (scope.width - chordWidth)/2;
+                var chordRight = chordLeft + chordWidth;
+                var chordTop = (scope.height - chordHeight)/2;
+                var chordBottom = chordTop + chordHeight;
+
+                var svg = SimpleSVG({width: scope.width+"px", height: scope.height+"px"})
+                    .defaults({fill: "white", stroke: "black", strokeWidth:"1px"});
+
+                // chord border
+                svg.line(chordLeft, chordTop, chordRight, chordTop);
+                svg.line(chordLeft, chordBottom, chordRight, chordBottom);
+
+                // frets
                 for (var f=1; f<numFrets; ++f) {
-                	var fretY = chordTop+f*fretSpacing;
-                	scope.paper.path("M"+chordLeft+","+fretY+"H"+chordRight);
+                    var fretY = chordTop+f*fretSpacing;
+                    svg.line(chordLeft, fretY, chordRight, fretY, {class: "fret"});
                 }
-             	// strings
-                for (var s=1; s<numStrings-1; ++s) {
-                	var stringX = chordLeft+s*stringSpacing;
-                	scope.paper.path("M"+stringX+","+chordTop+"V"+chordBottom);
+                // strings
+                for (var s=0; s<numStrings; ++s) {
+                    var stringX = chordLeft+s*stringSpacing;
+                    svg.line(stringX, chordTop, stringX, chordBottom, {class: "string"});
                 }
-             	
+
                 // fretdots
                 if (scope.chord != null) {
-        	     	for (var s = 0; s<scope.chord.numStrings; ++s) {
-        	     		var fret = scope.chord.diagramFrets[s];
-        	     		var x = chordLeft+(scope.chord.numStrings-s-1)*stringSpacing;
-        	     		var y = chordTop+fret*fretSpacing-fretSpacing/2;
-        	     		if (fret > -1) {
-        	     			var c = scope.paper.circle(x, y, fretSpacing/4)
-        	         			.attr("stroke", "#000")
-        	         			.attr("fill", scope.DEFAULT_BG);
-        	     			if (fret > 0) {
-        	     				c.attr("fill", scope.FRETDOT_MUTED);
-        	     				if (scope.showFingers)
-        	     					scope.paper.text(x, y, scope.chord.fingers[s])
-        	     						.attr("fill", "#fff");
-        	     			}
-        	     		}
-        	     	}
+                    for (var s = 0; s<scope.chord.numStrings; ++s) {
+                        var fret = scope.chord.diagramFrets[s];
+                        var x = chordLeft+(scope.chord.numStrings-s-1)*stringSpacing;
+                        var y = chordTop+fret*fretSpacing-fretSpacing/2;
+                        if (fret > 0)
+                            svg.circle(x, y, fretSpacing/4, {class: "fretdot"});
+                        else if (fret == 0)
+                            svg.circle(x, y, fretSpacing/4, {class: "fretdot open"});
+                    }
                 }
+
+                element.append(svg);
         	};
 
         	scope.renderTab = function() {
-        		
+                var renderer = new Vex.Flow.Renderer(element[0], Vex.Flow.Renderer.Backends.RAPHAEL);
+
+                var ctx = renderer.getContext();
+                // Create and draw the tablature stave
+                var tabstave = new Vex.Flow.TabStave(10, 0, 500);
+                tabstave.addTabGlyph();
+                tabstave.setContext(ctx).draw();
+
+                // Create some notes
+                var notes = [$music.vexFlowTabChord(scope.chord)];
+
+                Vex.Flow.Formatter.FormatAndDraw(ctx, tabstave, notes);
         	};
 
         	scope.renderNotes = function() {
@@ -134,8 +133,10 @@ angular.module('conchordance')
 
         	if (scope.renderMode == 'notes')
         		scope.render = scope.renderNotes;
-        	if (scope.renderMode == 'diagram')
-        		scope.render = scope.renderDiagram;
+            if (scope.renderMode == 'diagram')
+                scope.render = scope.renderDiagram;
+            if (scope.renderMode == 'tab')
+                scope.render = scope.renderTab;
         	
         	scope.render();
         }
