@@ -6,8 +6,6 @@ angular.module('conchordance')
 		};
 
 		$scope.instrumentSelected = function() {
-			$scope.$broadcast('instrument-selected', $scope.selectedInstrument);
-			
 			if ($scope.selectedInstrument != null) {
 				var notes = new Array($scope.selectedInstrument.tuning.length);
 				for (var i = 0; i<notes.length; ++i)

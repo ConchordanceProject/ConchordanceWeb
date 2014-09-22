@@ -41,6 +41,10 @@ angular.module('conchordance')
             var width = 800;
             var height = 120;
 
+            var svg = SimpleSVG({width: width+"px", height: height+"px"})
+                .defaults({fill: "white", stroke: "black", strokeWidth:"1px"});
+            element.append(svg);
+
             var FRETDOT_MUTED = "#888"; // TODO somehow derive from CSS
             var FRETDOT_HIGHLIGHT = "#05F"; // TODO somehow derive from CSS
         	
@@ -48,28 +52,33 @@ angular.module('conchordance')
             scope.scaledFretPositions = new Array(scope.unscaledFretPositions.length);
             scope.scaledFretPositions[0] = 0;
 
-            scope.canvas = Raphael(element[0], 0, 0, width, height);
-            scope.canvas.setSize(width, height); // Somehow, the size doesn't take and this is necessary
+            scope.drawFretdot = function(svg, string, fret, highlight) {
+                if (fret == -1)
+                    return;
 
-            scope.drawFretdot = function(string, fret, highlight) {
             	var y = scope.fretboardTop + string*scope.stringSpacing;
-            	var fill = highlight ? FRETDOT_HIGHLIGHT : FRETDOT_MUTED;
+                var x;
+                var css;
 
+                // TODO this needs to be based on the actual fretnut position,
+                // don't assume it's 0 (see banjo!)
             	if (fret > 0) {
-            		// Center the dot in the space behind its fret
-    				this.canvas.circle(scope.fretboardLeft + scope.scaledFretPositions[fret] - 
-    					(scope.scaledFretPositions[fret] - scope.scaledFretPositions[fret-1])/2, y, 5)
-    					.attr("stroke", "#000")
-         				.attr("fill", fill);
+                    css = highlight ? "fretdot highlight" : "fretdot";
+
+                    // Center the dot in the space behind its fret
+                    x = scope.fretboardLeft + scope.scaledFretPositions[fret] -
+                        (scope.scaledFretPositions[fret] - scope.scaledFretPositions[fret-1])/2;
     			} else if (fret == 0) {
+                    css = highlight ? "fretdot highlight" : "fretdot open";
+
     				// Draw the dot to the left of the nut
-    				this.canvas.circle(scope.fretboardLeft/2, y, 5)
-						.attr("stroke", "#000")
-	         			.attr("fill", fill);
+                    x = scope.fretboardLeft/2;
     			}
+                svg.circle(x, y, 5, {class: css});
             };
 
             scope.render = function() {
+                svg.clear();
                 var fretboardWidth = 700;
                 var fretboardHeight = 100;
 
@@ -86,51 +95,63 @@ angular.module('conchordance')
 
                 scope.fretboardTop = (height-fretboardHeight)/2;
 
-                scope.canvas.clear();
-                scope.canvas.rect(0, 0, width, height, 0).attr({fill: "#fff", stroke: "none"});
-                scope.canvas.rect(scope.fretboardLeft, scope.fretboardTop, fretboardWidth, fretboardHeight, 0)
-                	.attr({fill: "#fff", stroke: "#000"});
+                // fret nut
+                var nutSpan = strings-1; // Number of strings this nut spans (see banjo)
+                if (scope.instrument != null) {
+                    for (var s = strings-1; s>=0; --s) {
+                        if (scope.instrument.fretNutPositions[s] == 0) {
+                            nutSpan = s;
+                            break;
+                        }
+                    }
+                }
+                svg.rectangle(scope.fretboardLeft-10, scope.fretboardTop-5, 10, nutSpan * scope.stringSpacing+10, {fill: "#888", stroke: "none"});
 
                 // frets
                 var fretWidth = 4;
                 for (var f = 1; f<numFrets; ++f) {
-                    var fx = scope.fretboardLeft + scope.scaledFretPositions[f] - fretWidth;
-                    scope.canvas.rect(fx, scope.fretboardTop, fretWidth, fretboardHeight)
-                        .attr({fill: "#888", stroke: "none"});
+                    var x = scope.fretboardLeft + scope.scaledFretPositions[f] - fretWidth;
+                    var fretSpan = strings-1; // Number of strings this fret spans (see banjo)
+                    if (scope.instrument != null) {
+                        for (var s = strings-1; s>=0; --s) {
+                            if (scope.instrument.fretNutPositions[s] <= f) {
+                                fretSpan = s;
+                                break;
+                            }
+                        }
+                    }
+                    svg.rectangle(x, scope.fretboardTop, fretWidth, fretSpan*scope.stringSpacing, {fill: "#888", stroke: "none"});
                 }
 
                 // strings
                 var stringThickness = 3;
                 for (var s = 0; s<strings; ++s) {
-                	var y = scope.fretboardTop + s*scope.stringSpacing - stringThickness/2;
-                    scope.canvas.rect(scope.fretboardLeft, y, fretboardWidth, stringThickness)
-                    	.attr({fill: "#000", stroke: "none"});
-                    scope.canvas.path("M" + scope.fretboardLeft + "," + (y) + "H" + scope.fretboardRight);
-                    scope.canvas.path("M" + scope.fretboardLeft + ","+ (y + stringThickness) + "H" + scope.fretboardRight);
+                    var stringOffset = 0;
+                    if (scope.instrument != null)
+                        stringOffset = scope.scaledFretPositions[scope.instrument.fretNutPositions[s]];
+                    var x = scope.fretboardLeft + stringOffset;
+                    var y = scope.fretboardTop + s*scope.stringSpacing - stringThickness/2;
+                    svg.rectangle(x, y, fretboardWidth-stringOffset, stringThickness, {fill: "#000", stroke: "none"});
                 }
-
-                // fret-nut
-                scope.canvas.rect(scope.fretboardLeft-10, scope.fretboardTop-5, 10, scope.fretboardHeight+10)
-                	.attr({fill: "#888", stroke: "none"});
 
                 // highlight the positions included in the selected chord
-                if (scope.fretboard != null) {
-                	for (var s = 0; s<strings; ++s) {
-        		    	for (var f = 0; f<=numFrets; ++f) {        		    	
-	        		    	if (!scope.fretboard[s][f])
-	        		    		continue;
-	        		    	
-	        		    	scope.drawFretdot(s, f, false);
-        		    	}
-        		    }
+                if (scope.fretboard != null && typeof(scope.fretboard) != undefined) {
+                    for (var s = 0; s<strings; ++s) {
+                        for (var f = 0; f<=numFrets; ++f) {
+                            if (!scope.fretboard[s][f])
+                                continue;
+
+                            scope.drawFretdot(svg, s, f, false);
+                        }
+                    }
                 }
 
-            	// Draw selected chord fingering
+                // Draw selected chord fingering
                 if (scope.chordFingering != null) {
-        	    	for (var s = 0; s<strings; ++s) {
-        		    	var f = scope.chordFingering.absoluteFrets[s];
-        		    	scope.drawFretdot(s, f, true);
-        		    }
+                    for (var s = 0; s<strings; ++s) {
+                        var f = scope.chordFingering.absoluteFrets[s];
+                        scope.drawFretdot(svg, s, f, true);
+                    }
                 }
             };
         }

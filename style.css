@@ -32,8 +32,10 @@ body {
     fill: #888;
 }
 .fretdot.open {
-    stroke-width: 1px;
     fill: white;
+}
+.fretdot.highlight {
+    fill: #05F;
 }
 
 .string {
