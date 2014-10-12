@@ -7,10 +7,6 @@ angular.module('conchordance')
         	instrument: '='
         },
         link: function(scope, element, attrs) {
-        	scope.noteNameHtml = function(note) {
-        		return $sce.trustAsHtml($music.noteNameHtml(note));
-        	};
-        	
         	scope.tuning = [];
         	
         	scope.$watch('instrument', function(newInstrument, oldInstrument) {

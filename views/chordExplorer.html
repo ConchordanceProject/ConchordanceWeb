@@ -60,7 +60,7 @@
                            </select>
                            <span class="note-name text-muted"
                                  ng-repeat="interval in selectedChordType.intervals"
-                                 ng-bind-html="intervalNameHtml(interval)">
+                                 ng-bind-html="interval | scaleDegree">
                            </span>
                        </div>
                    </div>

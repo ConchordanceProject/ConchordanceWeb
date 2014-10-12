@@ -1,6 +1,6 @@
 angular.module('conchordance')
-.controller('chordDetails', ['$scope', '$sce', '$music', '$conchordance',
-    function($scope, $sce, $music, $conchordance) {
+.controller('chordDetails', ['$scope', '$sce', '$music',
+    function($scope, $sce, $music) {
         $scope.otherChordFingering = $scope.selectedChordFingering
 
         $scope.chordName =

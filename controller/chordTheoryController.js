@@ -1,14 +1,6 @@
 angular.module('conchordance')
-.controller('chordTheory', ['$scope', '$sce', '$music', '$conchordance', 
-    function($scope, $sce, $music, $conchordance) {
-		$scope.noteNameHtml = function(interval) {
-			return $sce.trustAsHtml($music.noteNameHtml(interval));	
-		};
-		
-		$scope.intervalNameHtml = function(interval) {
-			return $sce.trustAsHtml($music.intervalNameHtml(interval));
-		};
-		
+.controller('chordTheory', ['$scope', '$music', '$conchordance',
+    function($scope, $music, $conchordance) {
 		$scope.getChord = function() {
 			if ($scope.selectedRoot != null && $scope.selectedChordType != null) {
 				$conchordance.getChord($scope.selectedRoot, $scope.selectedChordType.name)

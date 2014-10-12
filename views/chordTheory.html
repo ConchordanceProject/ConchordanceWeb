@@ -39,7 +39,7 @@
 						<br></br>
 						<span class="note-name"
 							ng-repeat="interval in selectedChordType.intervals"
-							ng-bind-html="intervalNameHtml(interval)">
+							ng-bind-html="interval | scaleDegree">
 						</span>
 					</div>
 				</div>
@@ -50,7 +50,7 @@
 	                        <br></br>
 	                        <span class="note-name"
 	                             ng-repeat="note in selectedChord.notes"
-	                             ng-bind-html="noteNameHtml(note)" >
+	                             ng-bind-html="note | noteName" >
                         	</span>
 	                    </div>
 	                    <scale-staff></scale-staff>
