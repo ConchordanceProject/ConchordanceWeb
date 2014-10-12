@@ -1,0 +1,11 @@
+<div class="row">
+    <div ng-repeat="fingering in sortedChords"
+         class="chord-sample">
+        <chord-fingering-view
+                ng-click="chordFingeringClicked(fingering)"
+                fingering="fingering"
+                render-mode="diagram"
+                highlight="true">
+        </chord-fingering-view>
+    </div>
+</div>

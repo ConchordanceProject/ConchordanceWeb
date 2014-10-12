@@ -83,16 +83,8 @@
 		{{chordFingerings.length}} chords found</div>
 	<br/>
 	<br/>
-	<div class="row">
-		<div ng-repeat="fingering in chordFingerings"
-			class="chord-sample">
-			<chord-fingering-view
-                ng-click="chordFingeringSelected(fingering)"
-				fingering="fingering"
-				render-mode="diagram"
-				highlight="true">
-			</chord-fingering-view>
-		</div>
-	</div>
-	<br/>
+    <chord-fingering-list
+        chord-fingerings="chordFingerings"
+        chord-fingering-clicked="chordFingeringSelected">
+        </chord-fingering-list>
 </div>
