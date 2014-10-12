@@ -1,13 +1,16 @@
 <div class="container" ng-controller="chordDetails">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h4 ng-bind-html="trust(chordName)">
-            </h4>
-            <tuning-hint instrument="selectedInstrument">
-            </tuning-hint>
+            <h4 ng-bind-html="trust(chordName)"></h4>
+        </div>
+        <div class="panel-body">
+            <chord-fingering-notes chord-fingering="selectedChordFingering"></chord-fingering-notes>
+            <br/>
+            <inversion-text chord-fingering="selectedChordFingering"></inversion-text>
         </div>
     </div>
 
+    <tuning-hint instrument="selectedInstrument" class="pull-right"></tuning-hint>
     <fretboard-view instrument="selectedInstrument"
                     chord-fingering="selectedChordFingering">
     </fretboard-view>

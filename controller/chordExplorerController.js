@@ -1,14 +1,6 @@
 angular.module('conchordance')
-.controller('main', ['$scope', '$sce', '$state', '$music', '$conchordance',
-    function($scope, $sce, $state, $music, $conchordance) {
-		$scope.noteNameHtml = function(interval) {
-			return $sce.trustAsHtml($music.noteNameHtml(interval));	
-		};
-		
-		$scope.intervalNameHtml = function(interval) {
-			return $sce.trustAsHtml($music.intervalNameHtml(interval));
-		};
-		
+.controller('main', ['$scope', '$state', '$music', '$conchordance',
+    function($scope, $state, $music, $conchordance) {
 		$scope.findChords = function() {
 			$scope.showWelcome = false;
             $scope.searchInProgress = true;
