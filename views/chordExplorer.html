@@ -28,8 +28,7 @@
                                    class="form-control">
                                <option value=""> -- Select an Instrument -- </option>
                            </select>
-                           <tuning-hint instrument="selectedInstrument">
-                           </tuning-hint>
+                           <tuning-hint instrument="selectedInstrument"></tuning-hint>
                        </div>
                    </div>
 
@@ -38,12 +37,7 @@
                            <label class="control-label">
                                Root
                            </label>
-                           <select ng-model="selectedRoot"
-                                   ng-options="n for n in notes"
-                                   ng-change="rootSelected()"
-                                   class="form-control">
-                               <option value=""> -- Select Root -- </option>
-                           </select>
+                           <note-selector selected-note="selectedRoot"></note-selector>
                        </div>
                    </div>
 

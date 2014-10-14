@@ -14,12 +14,16 @@ angular.module('conchordance')
 				});
 			}
 		};
-				
-		$scope.roots = $music.sharpNotes;		
+
 		$scope.chordTypes = [];
-		$scope.selectedRoot = $scope.roots[0];
+		$scope.selectedRoot = "A";
 		$scope.selectedChordType = null;
 
+        $scope.$watch('selectedRoot', function() {
+            $scope.getChord();
+        });
+
+        // Fetch chord types from the server
 		$conchordance.getChordTypes()
 		.success(function(results) {
 			$scope.chordTypes = results;

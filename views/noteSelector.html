@@ -1,0 +1,12 @@
+<select class="form-control" ng-model="selectedNote">
+    <option
+        ng-repeat="note in notes"
+        value="{{note}}"
+        ng-selected="note == selectedNote">
+        {{note}}
+    </option>
+</select>
+
+<a ng-bind-html="toggleLabel"
+    ng-click="toggleFlatSharp()">
+</a>
