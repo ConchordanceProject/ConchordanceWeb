@@ -10,7 +10,8 @@ Music = {
 			return "&#9837";
 		if (modifier == -2)
 			return "&#9837&#9837";
-		// TODO double sharp, etc
+		if (modifier == 2)
+            return "x"
 		
 		return "";
 	},
