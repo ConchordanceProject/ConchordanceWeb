@@ -47,22 +47,17 @@ angular.module('conchordance')
             $scope.chordFingerings = [];
         };
 
-        $scope.rootSelected = function() {
-            $scope.chordFingerings = [];
-        };
-
 		$scope.chordFingeringSelected = function(chordFingering) {
             $scope.setSelectedChordFingering(chordFingering);
             $state.go('chordDetails');
 		};
-	
-		$scope.showWelcome = true;
-		$scope.notes = $music.sharpNotes;
+
+        $scope.showWelcome = true;
 		$scope.instruments = [];
 		$scope.chordTypes = [];
 		$scope.chordFingerings = [];
 		$scope.instrumentChooserSelection = null;
-		$scope.selectedRoot = $scope.notes[0];
+		$scope.selectedRoot = "A";
 		$scope.selectedChordType = null;
         $scope.searchInProgress = false;
 
@@ -79,5 +74,9 @@ angular.module('conchordance')
 			$scope.chordTypes = results;
 			$scope.selectedChordType = results[0];
 		});
-	}
+
+        $scope.$watch('selectedRoot', function() {
+            $scope.chordFingerings = [];
+        });
+    }
 ]);
