@@ -4,30 +4,30 @@
             <h4 ng-bind-html="trust(chordName)"></h4>
         </div>
         <div class="panel-body">
-            <chord-fingering-notes chord-fingering="selectedChordFingering"></chord-fingering-notes>
+            <chord-fingering-notes chord-fingering="selections.chordFingering"></chord-fingering-notes>
             <br/>
-            <inversion-text chord-fingering="selectedChordFingering"></inversion-text>
+            <inversion-text chord-fingering="selections.chordFingering"></inversion-text>
         </div>
     </div>
 
-    <tuning-hint instrument="selectedInstrument" class="pull-right"></tuning-hint>
-    <fretboard-view instrument="selectedInstrument"
-                    chord-fingering="selectedChordFingering">
+    <tuning-hint instrument="selections.instrument" class="pull-right"></tuning-hint>
+    <fretboard-view instrument="selections.instrument"
+                    chord-fingering="selections.chordFingering">
     </fretboard-view>
 
     <br/>
     <br/>
     <div class="row">
         <chord-fingering-view
-                fingering="selectedChordFingering"
+                fingering="selections.chordFingering"
                 render-mode="diagram">
         </chord-fingering-view>
         <chord-fingering-view
-                fingering="selectedChordFingering"
+                fingering="selections.chordFingering"
                 render-mode="notes">
         </chord-fingering-view>
         <chord-fingering-view
-                fingering="selectedChordFingering"
+                fingering="selections.chordFingering"
                 render-mode="tab">
         </chord-fingering-view>
     </div>

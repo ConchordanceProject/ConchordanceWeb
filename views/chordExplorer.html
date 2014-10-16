@@ -22,13 +22,10 @@
                            <label class="control-label">
                                Instrument
                            </label>
-                           <select ng-model="instrumentChooserSelection"
-                                   ng-options="i.name for i in instruments"
-                                   ng-change="instrumentSelected()"
-                                   class="form-control">
-                               <option value=""> -- Select an Instrument -- </option>
-                           </select>
-                           <tuning-hint instrument="selectedInstrument"></tuning-hint>
+                           <instrument-selector instruments="instruments"
+                                   selected-instrument="selections.instrument">
+                           </instrument-selector>
+                           <tuning-hint instrument="selections.instrument"></tuning-hint>
                        </div>
                    </div>
 
@@ -37,7 +34,7 @@
                            <label class="control-label">
                                Root
                            </label>
-                           <note-selector selected-note="selectedRoot"></note-selector>
+                           <note-selector selected-note="selections.root"></note-selector>
                        </div>
                    </div>
 
@@ -46,14 +43,12 @@
                            <label class="control-label">
                                Chord Type
                            </label>
-                           <select ng-model="selectedChordType"
-                                   ng-options="t.name for t in chordTypes"
-                                   ng-change="chordTypeSelected()"
+                           <select ng-model="selections.chordType"
+                                   ng-options="type as type.name for type in chordTypes"
                                    class="form-control">
-                               <option value=""> -- Select a Chord Type -- </option>
                            </select>
                            <span class="note-name text-muted"
-                                 ng-repeat="interval in selectedChordType.intervals"
+                                 ng-repeat="interval in selections.chordType.intervals"
                                  ng-bind-html="interval | scaleDegree">
                            </span>
                        </div>
@@ -61,7 +56,9 @@
 
                    <div class="col-sm-4">
                        <br/>
-                       <button type="submit" class="btn btn-primary" ng-disabled="searchInProgress">Find Chords <i class="fa" ng-class="{'fa-refresh': searchInProgress, 'fa-spin': searchInProgress}"></i></button>
+                       <button type="submit" class="btn btn-primary" ng-disabled="searchInProgress">
+                           Find Chords <i class="fa" ng-class="{'fa-refresh': searchInProgress, 'fa-spin': searchInProgress}"></i>
+                       </button>
                    </div>
                </div>
            </form>
@@ -69,7 +66,7 @@
    </div>
        
 	<fretboard-view
-            instrument="selectedInstrument"
+            instrument="selections.instrument"
             fretboard="fretboard">
 	</fretboard-view>
 
@@ -80,5 +77,5 @@
     <chord-fingering-list
         chord-fingerings="chordFingerings"
         chord-fingering-clicked="chordFingeringSelected">
-        </chord-fingering-list>
+    </chord-fingering-list>
 </div>

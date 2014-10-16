@@ -11,17 +11,11 @@
 				    <label class="control-label">
 				        Instrument
 				    </label>
-				    <select ng-model="selectedInstrument"
-				            ng-options="i.name for i in instruments"
-				            ng-change="instrumentSelected()"
-				            class="form-control">
-				        <option value=""> -- Select an Instrument -- </option>
-				    </select>
-				    <tuning-hint instrument="selectedInstrument">
-				    </tuning-hint>
+				    <instrument-selector instruments="instruments" selected-instrument="selections.instrument"></instrument-selector>
+				    <tuning-hint instrument="selections.instrument"></tuning-hint>
 				</div>
 				<br/>
-				<fretboard-view instrument="selectedInstrument"></fretboard-view>
+				<fretboard-view instrument="selections.instrument"></fretboard-view>
 				<br/>
 				<br/>				
 				<scale-staff></scale-staff>

@@ -11,7 +11,7 @@
 					<div class="col-sm-2">
 						<div class="form-group">
 	                        <label class="control-label">Root</label>
-	                        <note-selector selected-note="selectedRoot"></note-selector>
+	                        <note-selector selected-note="selections.root"></note-selector>
 	                    </div>
 					</div>
 				</div>
@@ -20,10 +20,8 @@
 						<div class="form-group">
 							<label class="control-label">Chord Type</label>
 							<select
-								ng-model="selectedChordType"
-								ng-change="getChord()"
+								ng-model="selections.chordType"
 								ng-options="t.name for t in chordTypes" class="form-control">
-								<option value="">-- Select a Chord Type --</option>
 							</select>
 						</div>
 					</div>
@@ -33,7 +31,7 @@
 						<label class="control-label">Intervals in Chord</label>
 						<br></br>
 						<span class="note-name"
-							ng-repeat="interval in selectedChordType.intervals"
+							ng-repeat="interval in selections.chordType.intervals"
 							ng-bind-html="interval | scaleDegree">
 						</span>
 					</div>

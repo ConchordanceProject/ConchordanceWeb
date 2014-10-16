@@ -2,8 +2,8 @@ angular.module('conchordance')
 .controller('chordTheory', ['$scope', '$music', '$conchordance',
     function($scope, $music, $conchordance) {
 		$scope.getChord = function() {
-			if ($scope.selectedRoot != null && $scope.selectedChordType != null) {
-				$conchordance.getChord($scope.selectedRoot, $scope.selectedChordType.name)
+			if ($scope.selections.root != null && $scope.selections.chordType != null) {
+				$conchordance.getChord($scope.selections.root, $scope.selections.chordType.name)
 				.success(function(result) {					
 					$scope.selectedChord = result;		
 
@@ -15,20 +15,7 @@ angular.module('conchordance')
 			}
 		};
 
-		$scope.chordTypes = [];
-		$scope.selectedRoot = "A";
-		$scope.selectedChordType = null;
-
-        $scope.$watch('selectedRoot', function() {
-            $scope.getChord();
-        });
-
-        // Fetch chord types from the server
-		$conchordance.getChordTypes()
-		.success(function(results) {
-			$scope.chordTypes = results;
-			$scope.selectedChordType = results[0];
-			$scope.getChord();
-		});		
+        $scope.$watch('selections.root', $scope.getChord);
+        $scope.$watch('selections.chordType', $scope.getChord);
 	}
 ]);
