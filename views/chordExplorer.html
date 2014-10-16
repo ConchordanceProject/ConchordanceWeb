@@ -43,10 +43,7 @@
                            <label class="control-label">
                                Chord Type
                            </label>
-                           <select ng-model="selections.chordType"
-                                   ng-options="type as type.name for type in chordTypes"
-                                   class="form-control">
-                           </select>
+                           <chord-type-selector types="chordTypes" selected-type="selections.chordType"></chord-type-selector>
                            <span class="note-name text-muted"
                                  ng-repeat="interval in selections.chordType.intervals"
                                  ng-bind-html="interval | scaleDegree">

@@ -19,10 +19,7 @@
 					<div class="col-sm-2">
 						<div class="form-group">
 							<label class="control-label">Chord Type</label>
-							<select
-								ng-model="selections.chordType"
-								ng-options="t.name for t in chordTypes" class="form-control">
-							</select>
+							<chord-type-selector types="chordTypes" selected-type="selections.chordType"></chord-type-selector>
 						</div>
 					</div>
 				</div>
