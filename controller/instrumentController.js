@@ -1,6 +1,8 @@
 angular.module('conchordance')
 .controller('instrument', ['$scope', function($scope) {
         $scope.$watch('selections.instrument', function(newInstrument) {
+            $scope.showInstrumentParameter();
+
             if (newInstrument != null) {
                 var notes = new Array(newInstrument.tuning.length);
                 for (var i = 0; i<notes.length; ++i)

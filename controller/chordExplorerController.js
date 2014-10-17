@@ -1,6 +1,11 @@
 angular.module('conchordance')
 .controller('main', ['$scope', '$state', '$music', '$conchordance',
     function($scope, $state, $music, $conchordance) {
+        $scope.showParameters = function() {
+            $scope.showChordParameter();
+            $scope.showInstrumentParameter();
+        }
+
 		$scope.findChords = function() {
 			$scope.showWelcome = false;
             $scope.searchInProgress = true;
@@ -31,6 +36,7 @@ angular.module('conchordance')
         }
 
         $scope.chordParametersUpdated = function() {
+            $scope.showParameters();
             $scope.chordFingerings = [];
 
             if ($scope.validateChordRequest()) {
@@ -52,6 +58,8 @@ angular.module('conchordance')
 
         $scope.showWelcome = true;
         $scope.searchInProgress = false;
+
+        $scope.showParameters();
 
         $scope.$watch('selections.instrument', $scope.chordParametersUpdated);
         $scope.$watch('selections.root', $scope.chordParametersUpdated);

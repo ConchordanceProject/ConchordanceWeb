@@ -5,5 +5,9 @@ angular.module('conchordance')
             $music.noteNameHtml($scope.selections.chordFingering.chord.root)
                 + "-" + $scope.selections.chordFingering.chord.typeName
                 + " on " + $scope.selections.instrument.name;
+
+        $scope.showChordParameter();
+        $scope.showFingeringParameter();
+        $scope.showInstrumentParameter();
 	}
 ]);
