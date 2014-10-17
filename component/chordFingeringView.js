@@ -115,14 +115,16 @@ angular.module('conchordance')
 				  voice.draw(ctx, stave);
         	};
 
-        	if (scope.displayMode == 'notes')
-        		scope.render = scope.renderNotes;
-            if (scope.displayMode == 'diagram')
-                scope.render = scope.renderDiagram;
-            if (scope.displayMode == 'tab')
-                scope.render = scope.renderTab;
-        	
-        	scope.render();
+            scope.$watch('displayMode', function(newMode) {
+                element.empty();
+
+                if (newMode == 'notes')
+                    scope.renderNotes();
+                if (newMode == 'diagram')
+                    scope.renderDiagram();
+                if (newMode == 'tab')
+                    scope.renderTab();
+            });
         }
     };
 }]);
