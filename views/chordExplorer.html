@@ -67,12 +67,18 @@
             fretboard="fretboard">
 	</fretboard-view>
 
+    <br/>
+
 	<div class="text-muted pull-right" ng-show="chordFingerings.length > 0">
-		{{chordFingerings.length}} chords found</div>
+        {{chordFingerings.length}} chords found
+        <chord-display-mode-selector mode="selections.displayMode"></chord-display-mode-selector>
+    </div>
+
 	<br/>
-	<br/>
+
     <chord-fingering-list
         chord-fingerings="chordFingerings"
-        chord-fingering-clicked="chordFingeringSelected">
+        chord-fingering-clicked="chordFingeringSelected"
+        display-mode="{{selections.displayMode}}">
     </chord-fingering-list>
 </div>

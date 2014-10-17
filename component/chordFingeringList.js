@@ -13,12 +13,19 @@ angular.module('conchordance')
             /**
              *
              */
-            chordFingerings: '='
+            chordFingerings: '=',
+
+            /**
+             *
+             */
+            displayMode: '@'
         },
         link: function(scope, element, attrs) {
             var positionAscending = function(chordA, chordB) {
                 return chordA.position - chordB.position;
             }
+
+            console.log(scope.displayMode);
 
             scope.$watch('chordFingerings', function(newList) {
                 newList.sort(positionAscending);

@@ -13,7 +13,8 @@ angular.module('conchordance')
                 root: "A",
                 chordType: null,
                 instrument: null,
-                chordFingering: null
+                chordFingering: null,
+                displayMode: "diagram"
             }
 
             $scope.instruments = [];

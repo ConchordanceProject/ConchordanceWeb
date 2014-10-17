@@ -5,7 +5,7 @@ angular.module('conchordance')
         scope: {
         	chord: '=fingering',
         	highlight: '=highlight',
-        	renderMode: '@'
+            displayMode: '@'
         },
         link: function(scope, element, attrs) {
         	element.addClass('chord-sample');
@@ -115,11 +115,11 @@ angular.module('conchordance')
 				  voice.draw(ctx, stave);
         	};
 
-        	if (scope.renderMode == 'notes')
+        	if (scope.displayMode == 'notes')
         		scope.render = scope.renderNotes;
-            if (scope.renderMode == 'diagram')
+            if (scope.displayMode == 'diagram')
                 scope.render = scope.renderDiagram;
-            if (scope.renderMode == 'tab')
+            if (scope.displayMode == 'tab')
                 scope.render = scope.renderTab;
         	
         	scope.render();
