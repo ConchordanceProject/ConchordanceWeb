@@ -120,5 +120,5 @@ Music = {
 			else
 				chordFingering.diagramFrets[s] = chordFingering.capoRelativeFrets[s] - chordFingering.position + 1;
 		}
-	},
+	}
 };

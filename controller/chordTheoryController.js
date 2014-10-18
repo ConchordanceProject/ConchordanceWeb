@@ -1,8 +1,8 @@
 angular.module('conchordance')
-.controller('chordTheory', ['$scope', '$music', '$conchordance',
-    function($scope, $music, $conchordance) {
+.controller('chordTheory', ['$scope', '$music', 'conchordanceURL', '$conchordance',
+    function($scope, $music, conchordanceURL, $conchordance) {
 		$scope.getChord = function() {
-            $scope.showChordParameter();
+            conchordanceURL.showChordParameter($scope.selections);
 
 			if ($scope.selections.root != null && $scope.selections.chordType != null) {
 				$conchordance.getChord($scope.selections.root, $scope.selections.chordType.name)

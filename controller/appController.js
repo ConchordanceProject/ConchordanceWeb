@@ -1,55 +1,55 @@
 angular.module('conchordance')
-    .controller('appController', ['$scope', '$sce', '$location', '$conchordance',
-        function($scope, $sce, $location, $conchordance) {
+    .controller('appController', ['$scope', '$sce', 'conchordanceURL', '$conchordance',
+        function($scope, $sce, conchordanceURL, $conchordance) {
             $scope.trust = function(value) {
                 return $sce.trustAsHtml(value);
             };
 
-            $scope.showChordParameter = function() {
-                if ($scope.selections.root && $scope.selections.chordType)
-                    $location.search('chord', $scope.selections.root + $scope.selections.chordType.name);
+            var defaults = {
+                root: "A",
+                chordTypeName: "M",
+                instrumentName: "Guitar",
+                chordFingering: "x02220"
             }
 
-            $scope.showFingeringParameter = function() {
-                if ($scope.selections.chordFingering) {
-                    var fingerString = "";
-                    var frets = $scope.selections.chordFingering.capoRelativeFrets;
-                    for (var s = $scope.selections.chordFingering.numStrings-1; s>=0; --s)
-                        fingerString += frets[s] == -1 ? "x" : frets[s] ;
-
-                    $location.search('position', fingerString);
-                }
-            }
-
-            $scope.showInstrumentParameter = function() {
-                if ($scope.selections.instrument)
-                    $location.search('instr', $scope.selections.instrument.name);
-            }
+            var parameters = conchordanceURL.readParameters(defaults);
 
             /**
              * Selected state that persists across multiple areas of the app
              * such as an instrument or a chord
              */
             $scope.selections = {
-                root: "A",
+                root: parameters.root,
                 chordType: null,
                 instrument: null,
                 chordFingering: null
             }
 
-            $scope.instruments = [];
-            $scope.chordTypes = [];
-
             $conchordance.getInstruments()
                 .success(function(results) {
                     $scope.instruments = results;
-                    $scope.selections.instrument = results[0];
+
+                    // Find the instrument matching the query param
+                    var paramInstrument = null;
+                    for (var i = 0; i<results.length; ++i) {
+                        if (results[i].name == parameters.instrumentName)
+                            paramInstrument = results[i];
+                    }
+                    $scope.selections.instrument = paramInstrument || results[0];
                 });
 
             $conchordance.getChordTypes()
                 .success(function(results) {
                     $scope.chordTypes = results;
                     $scope.selections.chordType = results[0];
+
+                    // Find the chord type matching the query param
+                    var paramType = null;
+                    for (var i = 0; i<results.length; ++i) {
+                        if (results[i].name == parameters.chordTypeName)
+                            paramType = results[i];
+                    }
+                    $scope.selections.chordType = paramType || results[0];
                 });
         }
     ]);
