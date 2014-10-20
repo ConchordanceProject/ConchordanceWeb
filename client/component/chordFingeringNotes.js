@@ -2,7 +2,7 @@ angular.module('conchordance')
 .directive('chordFingeringNotes', ['$sce', '$music', function($sce, $music) {
     return {
         restrict: 'E',
-        templateUrl: 'views/chordFingeringNotes.html',
+        templateUrl: 'client/views/chordFingeringNotes.html',
         scope: {
             chordFingering: '='
         },

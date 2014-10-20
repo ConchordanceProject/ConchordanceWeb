@@ -2,7 +2,7 @@ angular.module('conchordance')
 .directive('tuningHint', ['$music', '$sce', function($music, $sce) {
     return {
         restrict: 'E',
-        templateUrl: 'views/tuningHint.html',
+        templateUrl: 'client/views/tuningHint.html',
         scope: {
         	instrument: '='
         },

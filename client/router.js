@@ -5,22 +5,22 @@ angular.module('conchordance').config(function($stateProvider, $urlRouterProvide
     $stateProvider
         .state('chordExplorer', {
             url: '/chordExplorer',
-            templateUrl: 'views/chordExplorer.html'
+            templateUrl: 'client/views/chordExplorer.html'
         })
         .state('chordTheory', {
             url: '/chordTheory',
-            templateUrl: 'views/chordTheory.html'
+            templateUrl: 'client/views/chordTheory.html'
         })
         .state('chordDetails', {
             url: '/chordDetails',
-            templateUrl: 'views/chordDetails.html'
+            templateUrl: 'client/views/chordDetails.html'
         })
         .state('instruments', {
             url: '/instruments',
-            templateUrl: 'views/instrumentExplorer.html'
+            templateUrl: 'client/views/instrumentExplorer.html'
         })
         .state('about', {
             url: '/about',
-            templateUrl: 'views/about.html'
+            templateUrl: 'client/views/about.html'
         });
 });
