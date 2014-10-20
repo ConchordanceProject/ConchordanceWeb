@@ -12,7 +12,7 @@ angular.module('conchordance')
 	            	// Move chords from the default octave they are created in by service
 	            	var movedNotes = $music.adjustNotesOctaves(result.notes, 4);
 					
-					$scope.$broadcast('set-scale-notes', movedNotes);
+					$scope.notes = movedNotes;
 				});
 			}
 		};
