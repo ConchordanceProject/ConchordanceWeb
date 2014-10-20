@@ -5,21 +5,21 @@ angular.module('conchordance')
                 return $sce.trustAsHtml(value);
             };
 
-            var defaults = {
+            $scope.defaults = {
                 root: "A",
                 chordTypeName: "M",
                 instrumentName: "Guitar",
                 chordFingering: "x02220"
             }
 
-            var parameters = conchordanceURL.readParameters(defaults);
+            $scope.parameters = conchordanceURL.readParameters($scope.defaults);
 
             /**
              * Selected state that persists across multiple areas of the app
              * such as an instrument or a chord
              */
             $scope.selections = {
-                root: parameters.root,
+                root: $scope.parameters.root,
                 chordType: null,
                 instrument: null,
                 chordFingering: null
@@ -32,7 +32,7 @@ angular.module('conchordance')
                     // Find the instrument matching the query param
                     var paramInstrument = null;
                     for (var i = 0; i<results.length; ++i) {
-                        if (results[i].name == parameters.instrumentName)
+                        if (results[i].name == $scope.parameters.instrumentName)
                             paramInstrument = results[i];
                     }
                     $scope.selections.instrument = paramInstrument || results[0];
@@ -46,7 +46,7 @@ angular.module('conchordance')
                     // Find the chord type matching the query param
                     var paramType = null;
                     for (var i = 0; i<results.length; ++i) {
-                        if (results[i].name == parameters.chordTypeName)
+                        if (results[i].name == $scope.parameters.chordTypeName)
                             paramType = results[i];
                     }
                     $scope.selections.chordType = paramType || results[0];

@@ -10,8 +10,10 @@ angular.module('conchordance')
                 if (selections.chordFingering) {
                     var fingerString = "";
                     var frets = selections.chordFingering.capoRelativeFrets;
-                    for (var s = selections.chordFingering.numStrings-1; s>=0; --s)
-                        fingerString += frets[s] == -1 ? "x" : frets[s] ;
+                    var numStrings = selections.chordFingering.numStrings;
+                    for (var s = numStrings-1; s>0; --s)
+                        fingerString += (frets[s] == -1 ? "x" : frets[s]) + "-";
+                    fingerString += frets[0] == -1 ? "x" : frets[0]
 
                     $location.search('position', fingerString);
                 }
@@ -32,6 +34,8 @@ angular.module('conchordance')
                 else
                     instrumentName = defaults.instrumentName;
 
+                var position = search.position;
+
                 // Parse the root and chord type
                 var root;
                 var chordTypeName
@@ -48,7 +52,8 @@ angular.module('conchordance')
                 return {
                     instrumentName: instrumentName,
                     root: root,
-                    chordTypeName: chordTypeName
+                    chordTypeName: chordTypeName,
+                    position: position
                 }
             }
         };

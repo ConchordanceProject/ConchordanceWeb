@@ -105,7 +105,7 @@ Music = {
 		var lowestFret = 9001;
 		var numFingers = 0;
 		for (var s = 0; s<chordFingering.numStrings; ++s) {
-			if (chordFingering.fingers[s] > 0) {
+			if (chordFingering.absoluteFrets[s] > 0) {
 				++numFingers;
 				if (chordFingering.absoluteFrets[s] < lowestFret)
 					lowestFret = chordFingering.absoluteFrets[s];

@@ -34,14 +34,26 @@ angular.module('conchordance').service('$conchordance', function($http) {
 			}
 		});
 	};
-	this.getChord = function(root, type) {
-		return $http({
-			method: 'GET',
-			url: requestBase + 'chords',
-			params: {
-				type: type,
-				root: root
-			}
-		});
-	};
+    this.getChord = function(root, type) {
+        return $http({
+            method: 'GET',
+            url: requestBase + 'chords',
+            params: {
+                type: type,
+                root: root
+            }
+        });
+    };
+    this.getChordFingering = function(root, type, instrument, frets) {
+        return $http({
+            method: 'GET',
+            url: requestBase + 'chords/fingering',
+            params: {
+                type: type,
+                root: root,
+                instrument: instrument,
+                frets: frets
+            }
+        });
+    };
 });
