@@ -10,10 +10,10 @@ angular.module('conchordance')
         	scope.tuning = [];
         	
         	scope.$watch('instrument', function(newInstrument, oldInstrument) {
-        		if (newInstrument == null)
-        			scope.tuning = [];
+        		if (newInstrument)
+                    scope.tuning = newInstrument.tuning.slice(0).reverse();
         		else
-        			scope.tuning = newInstrument.tuning.slice(0).reverse();
+                    scope.tuning = [];
         	});
         }
     };

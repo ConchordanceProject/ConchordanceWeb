@@ -112,7 +112,7 @@ angular.module('conchordance')
                 for (var f = 1; f<numFrets; ++f) {
                     var x = scope.fretboardLeft + scope.scaledFretPositions[f] - fretWidth;
                     var fretSpan = strings-1; // Number of strings this fret spans (see banjo)
-                    if (scope.instrument != null) {
+                    if (scope.instrument) {
                         for (var s = strings-1; s>=0; --s) {
                             if (scope.instrument.fretNutPositions[s] <= f) {
                                 fretSpan = s;
@@ -135,7 +135,7 @@ angular.module('conchordance')
                 }
 
                 // highlight the positions included in the selected chord
-                if (scope.fretboard != null && typeof(scope.fretboard) != undefined) {
+                if (scope.fretboard) {
                     for (var s = 0; s<strings; ++s) {
                         for (var f = 0; f<=numFrets; ++f) {
                             if (!scope.fretboard[s][f])
