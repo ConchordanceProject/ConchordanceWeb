@@ -2,7 +2,7 @@ angular.module('conchordance')
 .directive('scaleStaff', ['$music', function($music) {
     return {
         restrict: 'E',
-        templateUrl: 'views/scaleStaff.html',
+        templateUrl: 'client/views/scaleStaff.html',
         link: function(scope, element, attrs) {
             scope.$on('set-scale-notes', function(event, notes) {
             	scope.notes = notes;
