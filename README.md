@@ -8,7 +8,8 @@ A webapp for exploring chord fingerings for any fretted instrument.
 2. Create app.conf.js with: 
 ```javascript
 module.exports = {
-	db: 'mongodb://<user>:<password>@<url>'
+	db: 'mongodb://<user>:<password>@<url>',
+	express: 'express_session_secret'
 };
 ```
 3. ``` npm start ```
