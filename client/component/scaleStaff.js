@@ -3,12 +3,10 @@ angular.module('conchordance')
     return {
         restrict: 'E',
         templateUrl: 'views/scaleStaff.html',
+        scope: {
+            notes: '='
+        },
         link: function(scope, element, attrs) {
-            scope.$on('set-scale-notes', function(event, notes) {
-            	scope.notes = notes;
-                scope.renderStaff();
-            });
-
             scope.notes = [];
 
         	scope.renderStaff = function() {
@@ -45,6 +43,8 @@ angular.module('conchordance')
 				// Render voice
 				voice.draw(context, stave);
         	};
+
+            scope.$watch('notes', scope.renderStaff);
         },
     };
 }]);

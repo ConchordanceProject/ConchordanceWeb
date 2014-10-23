@@ -1,7 +1,9 @@
 angular.module('conchordance')
-.controller('chordTheory', ['$scope', '$music', '$conchordance',
-    function($scope, $music, $conchordance) {
+.controller('chordTheory', ['$scope', '$music', 'conchordanceURL', '$conchordance',
+    function($scope, $music, conchordanceURL, $conchordance) {
 		$scope.getChord = function() {
+            conchordanceURL.showChordParameter($scope.selections);
+
 			if ($scope.selections.root != null && $scope.selections.chordType != null) {
 				$conchordance.getChord($scope.selections.root, $scope.selections.chordType.name)
 				.success(function(result) {					
@@ -10,7 +12,7 @@ angular.module('conchordance')
 	            	// Move chords from the default octave they are created in by service
 	            	var movedNotes = $music.adjustNotesOctaves(result.notes, 4);
 					
-					$scope.$broadcast('set-scale-notes', movedNotes);
+					$scope.notes = movedNotes;
 				});
 			}
 		};

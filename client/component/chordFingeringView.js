@@ -14,6 +14,8 @@ angular.module('conchordance')
         	scope.height = 200;
 
         	scope.renderDiagram = function() {
+                element.empty();
+
         		var numFrets = 5;
         		var numStrings = scope.chord == null ? 6 : scope.chord.numStrings;
 
@@ -36,7 +38,7 @@ angular.module('conchordance')
                 svg.line(chordLeft, chordBottom, chordRight, chordBottom);
 
                 // chord position number
-                if (scope.chord.position > 0)
+                if (scope.chord && scope.chord.position > 0)
                     svg.text(scope.chord.position, chordLeft-17, chordTop+10, {class: "chord-position"});
 
                 // frets
@@ -51,7 +53,7 @@ angular.module('conchordance')
                 }
 
                 // fretdots
-                if (scope.chord != null) {
+                if (scope.chord) {
                     for (var s = 0; s<scope.chord.numStrings; ++s) {
                         var fret = scope.chord.diagramFrets[s];
                         var x = chordLeft+(scope.chord.numStrings-s-1)*stringSpacing;
@@ -67,21 +69,26 @@ angular.module('conchordance')
         	};
 
         	scope.renderTab = function() {
-                var renderer = new Vex.Flow.Renderer(element[0], Vex.Flow.Renderer.Backends.RAPHAEL);
+                element.empty();
 
+                var renderer = new Vex.Flow.Renderer(element[0], Vex.Flow.Renderer.Backends.RAPHAEL);
                 var ctx = renderer.getContext();
+
                 // Create and draw the tablature stave
                 var tabstave = new Vex.Flow.TabStave(0, 16, 120);
                 tabstave.addTabGlyph();
                 tabstave.setContext(ctx).draw();
 
-                // Create some notes
-                var notes = [$music.vexFlowTabChord(scope.chord)];
-
-                Vex.Flow.Formatter.FormatAndDraw(ctx, tabstave, notes);
+                // Create the notes
+                if (scope.chord) {
+                    var notes = [$music.vexFlowTabChord(scope.chord)];
+                    Vex.Flow.Formatter.FormatAndDraw(ctx, tabstave, notes);
+                }
         	};
 
         	scope.renderNotes = function() {
+                element.empty();
+
         		var renderer = new Vex.Flow.Renderer(element[0], Vex.Flow.Renderer.Backends.RAPHAEL);
 
 				var ctx = renderer.getContext();
@@ -89,30 +96,32 @@ angular.module('conchordance')
 				stave.setContext(ctx).draw();
 				
 				stave.addClef("treble").draw();
-				
-				var chordNotes = new Array(scope.chord.sortedNotes.length);
-				for (var i = 0; i<chordNotes.length; ++i) {
-					chordNotes[i] = scope.chord.sortedNotes[i].note;
-				}
-				
-				var notes = [$music.vexFlowChord(chordNotes)];
-				
-				// Create a voice in 4/4
-				  var voice = new Vex.Flow.Voice({
-				    num_beats: 1,
-				    beat_value: 4,
-				    resolution: Vex.Flow.RESOLUTION
-				  });
 
-				  // Add notes to voice
-				  voice.addTickables(notes);
+                if (scope.chord) {
+                    var chordNotes = new Array(scope.chord.sortedNotes.length);
+                    for (var i = 0; i<chordNotes.length; ++i) {
+                        chordNotes[i] = scope.chord.sortedNotes[i].note;
+                    }
 
-				  new Vex.Flow.Formatter()
-				  	.joinVoices([voice])
-				  	.format([voice], 120);
+                    var notes = [$music.vexFlowChord(chordNotes)];
 
-				  // Render voice
-				  voice.draw(ctx, stave);
+                    // Create a voice in 4/4
+                    var voice = new Vex.Flow.Voice({
+                        num_beats: 1,
+                        beat_value: 4,
+                        resolution: Vex.Flow.RESOLUTION
+                    });
+
+                    // Add notes to voice
+                    voice.addTickables(notes);
+
+                    new Vex.Flow.Formatter()
+                        .joinVoices([voice])
+                        .format([voice], 120);
+
+                    // Render voice
+                    voice.draw(ctx, stave);
+                }
         	};
 
         	if (scope.renderMode == 'notes')
@@ -121,8 +130,10 @@ angular.module('conchordance')
                 scope.render = scope.renderDiagram;
             if (scope.renderMode == 'tab')
                 scope.render = scope.renderTab;
-        	
-        	scope.render();
+
+        	scope.$watch('chord', function() {
+                scope.render();
+            });
         }
     };
 }]);
