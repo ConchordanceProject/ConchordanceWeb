@@ -1,0 +1,45 @@
+{
+  "name": "ConchordanceWeb",
+  "version": "0.0.1",
+  "description": "A webapp for exploring chord fingerings for any fretted instrument.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jbauschatz/ConchordanceWeb.git"
+  },
+  "author": "John Charles Bauschatz<john.bauschatz@my.wheaton.edu>",
+  "contributors": [
+    {
+      "name": "Alex Foran",
+      "email": "alex@alexforan.com"
+    },
+    {
+      "name": "Alex Solo",
+      "email": "alex@alexsolo.io"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jbauschatz/ConchordanceWeb/issues"
+  },
+  "homepage": "https://github.com/jbauschatz/ConchordanceWeb",
+  "dependencies": {
+    "mongodb": "^1.4.19",
+    "mongoose": "^3.8.17",
+    "passport": "^0.2.1",
+    "passport-local": "^1.0.0",
+    "express": "^4.9.8",
+    "express-session": "^1.9.0",
+    "morgan": "^1.4.0",
+    "body-parser": "^1.9.0",
+    "cookie-parser": "^1.3.3",
+    "method-override": "^2.3.0",
+    "crypto": "0.0.3",
+    "underscore": "~1.5.2",
+    "connect-mongo": "~0.4.0",
+    "express-error-handler": "^0.5.4"
+  }
+}

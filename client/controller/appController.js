@@ -1,6 +1,6 @@
 angular.module('conchordance')
-    .controller('appController', ['$scope', '$sce', 'conchordanceURL', '$conchordance',
-        function($scope, $sce, conchordanceURL, $conchordance) {
+    .controller('appController', ['$scope', '$sce', 'conchordanceURL', '$conchordance', 'Auth', '$location',
+        function($scope, $sce, conchordanceURL, $conchordance, Auth, $location) {
             $scope.trust = function(value) {
                 return $sce.trustAsHtml(value);
             };
@@ -51,5 +51,13 @@ angular.module('conchordance')
                     }
                     $scope.selections.chordType = paramType || results[0];
                 });
+
+            $scope.logout = function() {
+              Auth.logout(function(err) {
+                if(!err) {
+                  $location.path('/login');
+                }
+              });
+            };
         }
     ]);
