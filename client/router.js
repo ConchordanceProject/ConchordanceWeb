@@ -22,5 +22,17 @@ angular.module('conchordance').config(function($stateProvider, $urlRouterProvide
         .state('about', {
             url: '/about',
             templateUrl: 'views/about.html'
+        })
+        .state('profile', {
+            url: '/profile',
+            templateUrl: 'views/profile.html'
+        })
+        .state('login', {
+            url: '/login',
+            templateUrl: 'views/login.html'
+        })
+        .state('signup', {
+            url: '/signup',
+            templateUrl: 'views/signup.html'
         });
 });

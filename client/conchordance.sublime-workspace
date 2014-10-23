@@ -1,0 +1,852 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"flash",
+				"flashApplication"
+			],
+			[
+				"ac",
+				"accountingApplication"
+			],
+			[
+				"pms",
+				"pmsApplication"
+			],
+			[
+				"Lapc",
+				"LapClip"
+			],
+			[
+				"Coun",
+				"CountDownClip"
+			],
+			[
+				"subs",
+				"subsystem"
+			],
+			[
+				"subsy",
+				"subsystemSliders"
+			],
+			[
+				"Subsy",
+				"SubsystemsSpacing"
+			],
+			[
+				"Su",
+				"SubsystemSliderPrefab"
+			],
+			[
+				"for",
+				"for	for (…) {…}"
+			],
+			[
+				"on",
+				"onclick	Attr"
+			],
+			[
+				"get",
+				"getElementById"
+			],
+			[
+				"Over",
+				"OverloadRecoveryTime"
+			],
+			[
+				"pi",
+				"position"
+			],
+			[
+				"interface",
+				"interface-default	interface_definition"
+			],
+			[
+				"Console",
+				"CONSOLE"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/C/Users/Alex/Documents/GitHub/angular-passport/app/scripts/app.js",
+			"settings":
+			{
+				"buffer_size": 1795,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "conchordanceModule.js",
+			"settings":
+			{
+				"buffer_size": 973,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 150.0,
+		"selected_items":
+		[
+			[
+				"javas",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"ssja",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"ssjava",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"ssj",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"ssh",
+				"Set Syntax: HTML"
+			],
+			[
+				"ssasp",
+				"Set Syntax: HTML (ASP)"
+			],
+			[
+				"asp",
+				"Set Syntax: ASP"
+			],
+			[
+				"ssbat",
+				"Set Syntax: Batch File"
+			],
+			[
+				"html",
+				"Set Syntax: HTML (Angular.js)"
+			],
+			[
+				"bat",
+				"Set Syntax: Batch File"
+			],
+			[
+				"java",
+				"Set Syntax: Java"
+			],
+			[
+				"sss",
+				"Set Syntax: SQL"
+			],
+			[
+				"ssx",
+				"Set Syntax: XML"
+			],
+			[
+				"xml",
+				"Set Syntax: XML"
+			],
+			[
+				"ssc",
+				"Set Syntax: C#"
+			],
+			[
+				"angu",
+				"Set Syntax: HTML (Angular.js)"
+			],
+			[
+				"ssangu",
+				"Set Syntax: HTML (Angular.js)"
+			],
+			[
+				"sshand",
+				"Set Syntax: Handlebars"
+			],
+			[
+				"sshan",
+				"Set Syntax: Handlebars"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Package Control: List Packages"
+			],
+			[
+				"type",
+				"Set Syntax: TypeScript"
+			],
+			[
+				"isntall",
+				"Package Control: Install Package"
+			],
+			[
+				"ssjavas",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"javasc",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"ssc#",
+				"Set Syntax: C#"
+			],
+			[
+				"snippet",
+				"Snippet: #!/usr/bin/env"
+			],
+			[
+				"sscss",
+				"Set Syntax: CSS"
+			],
+			[
+				"packa",
+				"Preferences: Browse Packages"
+			],
+			[
+				"set syntax: ac",
+				"Set Syntax: ActionScript"
+			],
+			[
+				"ssa",
+				"Set Syntax: ActionScript"
+			],
+			[
+				"ssq",
+				"Set Syntax: SQL"
+			],
+			[
+				"sql",
+				"Set Syntax: SQL"
+			],
+			[
+				"ht",
+				"Set Syntax: HTML (ASP)"
+			],
+			[
+				"c#",
+				"Set Syntax: C#"
+			]
+		],
+		"width": 472.0
+	},
+	"console":
+	{
+		"height": 197.0,
+		"history":
+		[
+			"npm",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib2,os;pf='Package Control.sublime-package';ipp=sublime.installed_packages_path();os.makedirs(ipp) if not os.path.exists(ipp) else None;open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read())"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/Alex/Documents/GitHub/ConchordanceWeb",
+		"/C/Users/Alex/Documents/GitHub/ConchordanceWeb/client",
+		"/C/Users/Alex/Documents/GitHub/ConchordanceWeb/client/services"
+	],
+	"file_history":
+	[
+		"/C/Users/Alex/Documents/GitHub/angular-passport/app/views/index.html",
+		"/C/Users/Alex/Documents/GitHub/ConchordanceWeb/client/index.html",
+		"/C/Users/Alex/Documents/GitHub/ConchordanceWeb/client/directives/uniqueUsername.js",
+		"/C/Users/Alex/Documents/GitHub/ConchordanceWeb/client/directives/onFocus.js",
+		"/C/Users/Alex/Documents/GitHub/ConchordanceWeb/client/directives/mongooseError.js",
+		"/C/Users/Alex/Documents/GitHub/ConchordanceWeb/server/config/routes.js",
+		"/C/Users/Alex/Documents/GitHub/ConchordanceWeb/server/controllers/index.js",
+		"/C/Users/Alex/Documents/GitHub/ConchordanceWeb/server.js",
+		"/C/Users/Alex/Documents/GitHub/angular-passport/package.json",
+		"/C/Users/Alex/Documents/GitHub/ConchordanceWeb/client/services/Auth.js",
+		"/C/Users/Alex/Documents/GitHub/ConchordanceWeb/client/services/Session.js",
+		"/C/Users/Alex/Documents/GitHub/ConchordanceWeb/client/services/User.js",
+		"/C/Users/Alex/Documents/GitHub/angular-passport/app/views/partials/main.html",
+		"/C/Users/Alex/Documents/GitHub/ConchordanceWeb/client/router.js",
+		"/C/Users/Alex/Documents/GitHub/ConchordanceWeb/client/controller/login.js",
+		"/C/Users/Alex/Documents/GitHub/ConchordanceWeb/client/views/login.html",
+		"/C/Users/Alex/Documents/GitHub/ConchordanceWeb/client/controller/signup.js",
+		"/C/Users/Alex/Documents/GitHub/ConchordanceWeb/client/views/signup.html",
+		"/C/Users/Alex/Documents/GitHub/angular-passport/app/scripts/directives/mongooseError.js",
+		"/C/Users/Alex/Documents/GitHub/ConchordanceWeb/client/controller/appController.js",
+		"/C/Users/Alex/Documents/GitHub/ConchordanceWeb/client/conchordanceModule.js",
+		"/C/Users/Alex/Documents/GitHub/angular-passport/app/scripts/controllers/navbar.js",
+		"/C/Users/Alex/Documents/GitHub/angular-passport/app/scripts/controllers/main.js",
+		"/C/Users/Alex/Documents/GitHub/ConchordanceWeb/server/config/auth.js",
+		"/C/Users/Alex/Documents/GitHub/ConchordanceWeb/server.conf.js",
+		"/C/Users/Alex/Documents/GitHub/ConchordanceWeb/server/db/mongo.js",
+		"/C/Users/Alex/Documents/GitHub/ConchordanceWeb/.gitignore",
+		"/C/Users/Alex/Documents/GitHub/ConchordanceWeb/package.json",
+		"/C/Users/Alex/Documents/GitHub/ConchordanceWeb/server/config/pass.js",
+		"/C/Users/Alex/Documents/GitHub/ConchordanceWeb/server/config/config.js",
+		"/C/Users/Alex/Documents/GitHub/ConchordanceWeb/app.js",
+		"/C/Users/Alex/Documents/GitHub/ConchordanceWeb/server/models/user.js",
+		"/C/Users/Alex/Documents/GitHub/ConchordanceWeb/server/passport.js",
+		"/C/Users/Alex/Documents/GitHub/ConchordanceWeb/server/routes.js",
+		"/C/Users/Alex/Documents/GitHub/ConchordanceWeb/app.conf.js",
+		"/C/Users/Alex/Documents/GitHub/ConchordanceWeb/server/secrets.js",
+		"/C/Users/Alex/Downloads/node-todo-tut1-starter/node-todo-tut1-starter/app/routes.js",
+		"/C/Users/Alex/Downloads/node-todo-tut1-starter/node-todo-tut1-starter/server.js",
+		"/C/Users/Alex/Documents/GitHub/ConchordanceWeb/server/server.js",
+		"/C/Users/Alex/Documents/GitHub/ConchordanceWeb/public/index.html",
+		"/C/Users/Alex/Downloads/node-todo-tut1-starter/node-todo-tut1-starter/public/index.html",
+		"/C/Users/Alex/Downloads/node-todo-tut1-starter/node-todo-tut1-starter/config/database.js",
+		"/C/Users/Alex/Documents/Projects/alexsoloio/css/bootstrap.min.css",
+		"/C/Users/Alex/Documents/Projects/alexsoloio/index.html",
+		"/C/Users/Alex/Documents/GitHub/ConchordanceWeb/index.html",
+		"/C/tomcat64/logs/revpms.out",
+		"/C/Users/Alex/Downloads/ftlabs-fastclick-v1.0.3-7-g75b0aa0/ftlabs-fastclick-75b0aa0/lib/fastclick.js",
+		"/C/Users/Alex/Documents/Personal/MelonDash/MelonDash - Watermelon Racing_1.1.1_20141009090115.txt",
+		"/C/Users/Alex/Documents/Projects/NinjaMiner/WebPlayer/WebPlayer.html",
+		"/C/Users/Alex/Documents/Projects/NinjaMiner/.gitignore",
+		"/C/Users/Alex/Documents/Projects/NinjaMiner/Assets/Scripts/Behaviors/UI/SubsystemPanel.cs",
+		"/C/Users/Alex/Documents/Projects/NinjaMiner/Assets/Scripts/Behaviors/UI/ShopPanel.cs",
+		"/C/Users/Alex/Documents/Projects/NinjaMiner/Assets/Scripts/Behaviors/UI/HangarGUI.cs",
+		"/C/RevolutionEHR/hit-pms-html/config/resources/components/angular-ui-bootstrap-0.11.0/angular-ui-bootstrap.js",
+		"/C/tmp/protractor/reports/1412883975359/00c40029-008b-000b-002f-00da000500ca.json",
+		"/C/Users/Alex/Documents/Projects/firebase-test/app/scripts/main/main-ctrl.js",
+		"/C/Users/Alex/Documents/Personal/MelonDash/publisher request.txt",
+		"/C/Users/Alex/Documents/Personal/MelonDash/review pitch.txt",
+		"/C/Users/Alex/Desktop/searchReports.html",
+		"/C/Users/Alex/AppData/Roaming/npm/node_modules/q/package.json",
+		"/C/Users/Alex/Documents/Personal/MelonDash/MelonDash_1.1_20141001061319.txt",
+		"/C/Users/Alex/AppData/Local/Temp/Temp1_string.js-2.1.0.zip/string.js-2.1.0/lib/string.js",
+		"/C/Users/Alex/melondash.js",
+		"/C/Users/Alex/Documents/Visual Studio 2013/Projects/BlankSharedApp2/BlankSharedApp2/BlankSharedApp2.Windows/js/angular.min.js",
+		"/C/Users/Alex/Downloads/modernizr.custom.50205.js",
+		"/C/Users/Alex/AppData/Local/Temp/Temp1_underscore-1.7.0.zip/underscore-1.7.0/underscore.js",
+		"/C/Users/Alex/Downloads/jquery-2.1.1.js",
+		"/C/eula.3082.txt",
+		"/C/Users/Alex/Documents/Projects/firebase-test/app/index.html",
+		"/C/Users/Alex/Documents/Projects/firebase-test/app/scripts/firebaseTest.js",
+		"/C/Users/Alex/Documents/Projects/firebase-test/app/partials/main.html",
+		"/C/Users/Alex/Documents/Projects/firebase-test/gulp/build.js",
+		"/C/Users/Alex/Documents/Projects/firebase-test/dist/scripts/main-f971ae2f.js",
+		"/C/Users/Alex/Documents/Projects/firebase-test/app/scripts/main/awesomeThings.js",
+		"/C/Users/Alex/Documents/Projects/firebase-test/app/scripts/awesomeThings.js",
+		"/C/Users/Alex/Documents/Projects/firebase-test/gulp/wiredep.js",
+		"/C/Users/Alex/Documents/Projects/firebase-test/bower.json",
+		"/C/Users/Alex/Documents/Projects/firebase-test/.bowerrc",
+		"/C/Users/Alex/Documents/Projects/firebase-test/test/e2e/main.js",
+		"/C/Users/Alex/Documents/Projects/firebase-test/package.json",
+		"/C/Users/Alex/Documents/Projects/firebase-test/gulpfile.js",
+		"/C/Users/Alex/Documents/Personal/MelonDash/review pitch ios promo code",
+		"/C/Users/Alex/Documents/Personal/MelonDash/review pitch ios only",
+		"/C/Users/Alex/Documents/Personal/MelonDash/review pitch both promo code",
+		"/C/Users/Alex/Documents/Personal/MelonDash/review pitch",
+		"/C/Users/Alex/Documents/Projects/firebase-test/npm-debug.log",
+		"/C/Users/Alex/Downloads/S_D_85749994_20141005.txt",
+		"/C/Users/Alex/Downloads/S_D_85749994_20141005.txt.gz",
+		"/C/Users/Alex/AppData/Local/Temp/Temp1_text-2.0.12.zip/text-2.0.12/text.js",
+		"/C/Users/Alex/AppData/Local/Temp/Temp1_requirejs-2.1.15.zip/requirejs-2.1.15/require.js",
+		"/C/Users/Alex/Downloads/ui-bootstrap-tpls-0.11.2.js",
+		"/C/Users/Alex/Documents/Personal/MelonDash/Website/TheMelons.html",
+		"/C/Users/Alex/Desktop/test.html",
+		"/C/Users/Alex/Downloads/Test123---09-15-2014.html",
+		"/C/Users/Alex/Desktop/download.bat",
+		"/C/RevolutionEHR/fetch.bat",
+		"/C/RevolutionEHR/libs.bat",
+		"/C/Users/Alex/Documents/Projects/appengine/.gitignore",
+		"/C/Users/Alex/AppData/Local/Temp/Temp1_ng-grid-2.0.13.zip/ng-grid-2.0.13/CHANGELOG.md",
+		"/C/Users/Alex/AppData/Local/Temp/Temp1_angular.js-1.2.26.zip/angular.js-1.2.26/CHANGELOG.md",
+		"/C/RevolutionEHR/libs",
+		"/C/Users/Alex/Documents/Personal/MelonDash/Website/Dashboard.aspx",
+		"/C/Users/Alex/Documents/Personal/MelonDash/Website/Dashboard.aspx.cs",
+		"/C/Users/Alex/Documents/Intellij/RevEHR PMS/out/artifacts/pms/WEB-INF/spring/revolution.properties",
+		"/C/RevolutionEHR/hit-serviceportals-revcycle/src/com/hit/serviceportals/revcycle/validators/services/ServiceEngagementFormValidator.java",
+		"/C/RevolutionEHR/hit-serviceportals-revcycle/src/com/hit/serviceportals/revcycle/controllers/accounts/detail/services/CreateServiceController.java",
+		"/C/RevolutionEHR/hit-serviceportals-revcycle/src/com/hit/serviceportals/revcycle/controllers/SecurityController.java",
+		"/C/RevolutionEHR/hit-serviceportals-revcycle/config/WEB-INF/spring/application-security-beans.xml",
+		"/C/RevolutionEHR/hit-serviceportals-revcycle/config/WEB-INF/spring-servlet.xml",
+		"/C/RevolutionEHR/hit-serviceportals-revcycle/config/WEB-INF/spring/serviceportals-daos.xml",
+		"/C/RevolutionEHR/hit-serviceportals-revcycle/config/WEB-INF/spring/application-security.xml",
+		"/C/RevolutionEHR/hit-serviceportals-revcycle/config/WEB-INF/spring/application-setup.xml",
+		"/C/RevolutionEHR/hit-serviceportals-revcycle/src/com/hit/serviceportals/revcycle/validators/accounts/CreateAccountFormValidator.java",
+		"/C/RevolutionEHR/hit-serviceportals-revcycle/src/com/hit/serviceportals/revcycle/services/RevCycleServiceImpl.java",
+		"/C/Users/Alex/Documents/Personal/MelonDash/Website/PressKit.html",
+		"/C/Users/Alex/Documents/Projects/appengine/karma-unit.js",
+		"/C/Users/Alex/Documents/Projects/appengine/package.json",
+		"/C/Users/Alex/Documents/Projects/blah2/package.json",
+		"/C/RevolutionEHR/checkout.bat",
+		"/C/Users/Alex/Documents/Projects/angular-backbone/gulpfile.js",
+		"/C/Users/Alex/Documents/Projects/angular-backbone/app/index.html",
+		"/C/Users/Alex/Documents/Projects/appengine/gulpfile.js",
+		"/C/Users/Alex/Documents/Projects/appengine/build/index.html",
+		"/C/Users/Alex/Documents/Projects/appengine/build/templates.js",
+		"/C/Users/Alex/Documents/Projects/appengine/build/app.js",
+		"/C/Users/Alex/Documents/Projects/appengine/build/lib.js",
+		"/C/Users/Alex/Documents/Projects/appengine/build/app.css",
+		"/C/Users/Alex/Documents/Projects/darklordjs/bower.json"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			"C:\\Users\\Alex\\Documents\\GitHub\\ConchordanceWeb\\client",
+			"C:\\Users\\Alex\\Documents\\GitHub\\ConchordanceWeb\\server",
+			"C:\\Users\\Alex\\Documents\\GitHub\\ConchordanceWeb\\node_modules",
+			"C:\\Users\\Alex\\Documents\\GitHub\\ConchordanceWeb",
+			"C:\\Users\\Alex\\Documents\\GitHub\\ConchordanceWeb\\server",
+			"C:\\Users\\Alex\\Documents\\GitHub\\ConchordanceWeb\\client",
+			"C:\\Users\\Alex\\Documents\\GitHub\\ConchordanceWeb\\server",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"angularPassportAPp",
+			"html",
+			"favicon",
+			"express.",
+			"$location",
+			"on-focus",
+			"blog",
+			"config",
+			"lib",
+			"glyphicon",
+			"$",
+			"^",
+			"\"></",
+			" http://appsubmitr.com/\\n",
+			";",
+			"^.*?<br>",
+			"<br>",
+			"<br>.*?",
+			".*?(<br>)",
+			"<br>\n<br>",
+			"<br>\n\n\n<br>",
+			"<br>",
+			"br>",
+			"p>",
+			"<p><span style=\"text-align:left\"><span style=\"font-family:Arial; font-size:11px; color:#000000;  \"></span></span></p>\n<p><span style=\"text-align:left\"><span style=\"font-family:Arial; font-size:11px; color:#000000;  \"></span></span></p>",
+			"<p><span style=\"text-align:left\"><span style=\"font-family:Arial; font-size:11px; color:#000000;  \"></span></span></p>",
+			"<p>",
+			"<P.*?><FONT.*?><\\/FONT><\\/P>",
+			"</br>",
+			"<br>",
+			"</TEXTFORMAT>",
+			"<TEXTFORMAT LEADING=\"2\">",
+			"</p>",
+			"<p>",
+			"<P",
+			"<P>",
+			"<p>",
+			"gridview5",
+			"grod5",
+			"passwordResetForm",
+			"android",
+			"style=\"width:200px;\"",
+			"city1",
+			"png",
+			"digging",
+			"user",
+			"logo",
+			"messagingService",
+			"groundNormal",
+			"IsSliding",
+			"sliding.enabled",
+			"enabled",
+			"maxSidewaysSpeed",
+			"groundNormal",
+			"ApplyInputVelocityChange",
+			"processResources",
+			"sourceSets",
+			"\\n\\n",
+			"supportedv",
+			"'$",
+			"$",
+			"=",
+			"[^=]*",
+			"^",
+			"flashApplication",
+			"app",
+			"wrapper",
+			"1024",
+			"mess",
+			"C:",
+			"C:\\",
+			"^",
+			"nav-tabs",
+			"header-right",
+			"1024",
+			"800",
+			">,",
+			".*<",
+			"use ssl",
+			"setNameBackboneSetter",
+			"backbone",
+			">\n",
+			", ",
+			"\"",
+			"OR: \"Diagnosis, Active: ",
+			"\\n ",
+			"\\n",
+			",",
+			"2.16.840.1.113883.3.464.1003.102.12.1023",
+			"asthma",
+			"<list>",
+			"<list><",
+			"<list>",
+			"Asthma",
+			"strat",
+			"1000",
+			"asthma",
+			"0436",
+			"3fd13096-2c8f-40b5-9297-b714e8de9133",
+			"stratum",
+			"stratification",
+			"strat",
+			"40280381-3D61-56A7-013E-6649110743CE",
+			":providerId",
+			":practiceId",
+			":endDate",
+			":startDate",
+			":practiceId",
+			":providerId",
+			":endDate",
+			":startDate",
+			"asthma",
+			"denomin",
+			"exclusion",
+			"DENOM",
+			"IPP",
+			"\\n",
+			"Tutorial",
+			", CountDownOffset",
+			", new Vector3(0, 0.25f, 1.25f)",
+			", new Vector3(0, 0, 1.25f)",
+			"Text_Lap",
+			"SpawnText",
+			";\n",
+			"Text_3",
+			"jar",
+			"id=\"jar",
+			"dist"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"'",
+			", '",
+			",",
+			"\\n;",
+			"",
+			"<br>",
+			"<br>\n<br>",
+			"\\n<br>",
+			"br>\\n",
+			"br>",
+			"",
+			"\\n<p>",
+			"",
+			"</p>",
+			"<p>",
+			"",
+			"</br>",
+			"<br>",
+			"\\n<P",
+			"\\n<P>",
+			"\\n<p>",
+			"style=\"width:180px;\"",
+			"\\n",
+			"',",
+			"'",
+			"': '",
+			"\\1'",
+			"'",
+			"invoiceModule",
+			"\\nC:",
+			"\\nC:\\",
+			"npm -g install ",
+			",",
+			"",
+			", ",
+			"','",
+			"60",
+			"12",
+			"'2012-12-31 12:00:00.0'",
+			"'2012-01-01 12:00:00.0'",
+			"10",
+			"50",
+			"'2012-12-31 12:00:00.0'",
+			"'2012-01-01 12:00:00.0'",
+			", ",
+			"",
+			"\\n",
+			"",
+			",",
+			"\" \\},",
+			"\"idx\"",
+			"\\{",
+			"{",
+			",",
+			"\"",
+			"\" \\},\"",
+			"\" },\"",
+			"{\"id\":\"",
+			"",
+			"\\);",
+			"INSERT INTO `test`.`zip_codes` \\(`zip_code`\\) VALUES\\(",
+			",",
+			", ",
+			"', '",
+			"Hitpoints",
+			"",
+			", ",
+			",",
+			"new Achievement(Id_",
+			"",
+			"new",
+			"new Achievement(",
+			"new Achievement( ",
+			"public static readonly Achievement Id_",
+			"",
+			"public const int Id_",
+			"",
+			";",
+			"= ",
+			"=",
+			"public const int",
+			",",
+			"",
+			"Princeton Hospital Laboratory^^^^^RevolutionEHR^XX^^^183",
+			"362075^Fine^Larry^^^Dr.^^^RevolutionEHR^L^^^PRN",
+			"^RevolutionEHR",
+			"ORD723222-4&RevolutionEHR^R",
+			"Century Hospital^^^^^RevolutionEHR^XX^^^180|2070 Test Park^^Los Angeles^CA^90067^USA^B^^06037|2343242^Knowsalot^Phil^J.^III^Dr.^^^NIST-AA-1^L^^^DN",
+			"^RevolutionEHR",
+			"361985^Radon^Nicholas^M^JR^DR^^^RevolutionEHR^L^^^PRN",
+			"Century Hospital^^^^^RevolutionEHR^XX^^^180|2070 Test Park^^Los Angeles^CA^90067^USA^B^^06037|2343242^Knowsalot^Phil^J.^III^Dr.^^^NIST-AA-1^L^^^DN",
+			"361985^Radon^Nicholas^M^JR^DR^^^RevolutionEHR^L^^^PRN",
+			"^RevolutionEHR",
+			"361985^Radon^Nicholas^M^JR^DR^^^RevolutionEHR^L^^^PRN",
+			"2343242^Knowsalot^Phil^J.^III^Dr.^^^NIST-AA-1^L^^^DN",
+			"RevolutionEHR^XX^^^180",
+			"^RevolutionEHR",
+			"361985^Radon^Nicholas^^^^^^RevolutionEHR^L^^^PRN",
+			"2343242^Knowsalot^Phil^J.^III^Dr.^^^NIST-AA-1^L^^^DN",
+			"361985^Radon^Nicholas^M^JR^DR^^^RevolutionEHR^L^^^PRN",
+			"GORD874233^RevolutionEHR",
+			"ORD666555^RevolutionEHR",
+			"RevolutionEHR^XX^^^180",
+			"Radon^Nicholas^^^^^^RevolutionEHR^",
+			"361985^Radon^Nicholas",
+			"ORD723222-1",
+			"SuperLabs",
+			"Green^Harold",
+			"One^Johnny",
+			"",
+			" \" +",
+			"\"  ",
+			"",
+			" \" +",
+			"\"  ",
+			" \" +",
+			"\"  ",
+			"\\n    \\) temp",
+			"\\n    ) temp",
+			"    \\(\\n    SELECT",
+			"(\\nSELECT",
+			"    (\\nSELECT",
+			"    (\\n    SELECT",
+			"practice_id = 107",
+			"provider_id = 361961",
+			"(\\n    SELECT",
+			"\\n  FROM",
+			"\\n    ,"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/C/Users/Alex/Documents/GitHub/angular-passport/app/scripts/app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1795,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								157,
+								54
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "conchordanceModule.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 973,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								136,
+								136
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 22.0
+	},
+	"input":
+	{
+		"height": 30.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "conchordance.sublime-project",
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"incorporatefi",
+				"hit-pms\\core\\src\\com\\hit\\view\\patient\\IncorporatePatientFileWindow.mxml"
+			],
+			[
+				"personserviceimpl",
+				"hit-core\\main\\src\\com\\hit\\core\\services\\pms\\person\\PersonServiceImpl.java"
+			],
+			[
+				"patientserviceimpl",
+				"hit-core\\main\\src\\com\\hit\\core\\services\\pms\\patient\\PatientServiceImpl.java"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"C:\\Users\\Alex\\default.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 241.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
