@@ -1,14 +1,23 @@
 angular.module('conchordance')
 .controller('instrument', ['$scope', 'conchordanceURL', function($scope, conchordanceURL) {
-        $scope.$watch('selections.instrument', function(newInstrument) {
+
+        $scope.showTuning = function() {
+            if ($scope.selections.instrument) {
+                var notes = new Array($scope.selections.instrument.tuning.length);
+                for (var i = 0; i<notes.length; ++i)
+                    notes[i] = $scope.selections.instrument.tuning[notes.length-i-1];
+                $scope.notes = notes;
+
+                console.log(notes);
+            }
+        }
+
+        $scope.$watch('selections.instrument', function() {
             conchordanceURL.showInstrumentParameter($scope.selections);
 
-            if (newInstrument) {
-                var notes = new Array(newInstrument.tuning.length);
-                for (var i = 0; i<notes.length; ++i)
-                    notes[i] = newInstrument.tuning[notes.length-i-1];
-                $scope.notes = notes;
-            }
+            $scope.showTuning();
         });
+
+        $scope.showTuning();
 	}
 ]);
