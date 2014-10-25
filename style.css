@@ -51,7 +51,7 @@ body {
     font-size: 10px;
 }
 
-.welcome-message{
+.welcome-message {
     overflow-y: hidden;
     max-height: 200px; /* approximate max height */
 

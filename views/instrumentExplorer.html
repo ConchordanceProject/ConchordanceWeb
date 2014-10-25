@@ -18,8 +18,22 @@
 				<fretboard-view instrument="selections.instrument" select-on-click="true" selected-note="instrumentSelections.selectedNote"></fretboard-view>
 				<br/>
 				<br/>
-                <scale-staff notes="instrumentSelections.selectedNoteArray"></scale-staff>
-                <scale-staff notes="instrumentSelections.tuningNotes"></scale-staff>
+
+                <div class="form-group">
+                    <label class="control-label">
+                        Selected Note
+                    </label>
+                    <br>
+                    <scale-staff notes="instrumentSelections.selectedNoteArray" staff-width="200"></scale-staff>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">
+                        Tuning
+                    </label>
+                    <br>
+                    <scale-staff notes="instrumentSelections.tuningNotes"></scale-staff>
+                </div>
 			</div>
 		</div>
 	</div>
