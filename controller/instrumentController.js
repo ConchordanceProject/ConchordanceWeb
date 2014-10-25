@@ -25,6 +25,8 @@ angular.module('conchordance')
         $scope.$watch('instrumentSelections.selectedNote', function() {
             if ($scope.instrumentSelections.selectedNote)
                 $scope.instrumentSelections.selectedNoteArray = [$scope.instrumentSelections.selectedNote];
+            else
+                $scope.instrumentSelections.selectedNoteArray = [];
         });
 	}
 ]);

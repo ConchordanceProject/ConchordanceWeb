@@ -18,7 +18,6 @@ angular.module('conchordance')
                 var width = canvas.width;
                 var staffWidth = width-20;
                 var height = canvas.height;
-                console.log(width +','+height);
 
             	var renderer = new Vex.Flow.Renderer(canvas, Vex.Flow.Renderer.Backends.CANVAS);
 

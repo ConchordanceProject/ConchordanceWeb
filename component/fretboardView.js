@@ -38,6 +38,8 @@ angular.module('conchordance')
                     numFrets = newValue.frets;
                 }
                 scope.selectedFretdot = null;
+                if (scope.selectOnClick)
+                    scope.selectedNote = null;
                 scope.render();
             });
 
