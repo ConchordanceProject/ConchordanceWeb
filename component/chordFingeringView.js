@@ -75,7 +75,8 @@ angular.module('conchordance')
                 var ctx = renderer.getContext();
 
                 // Create and draw the tablature stave
-                var tabstave = new Vex.Flow.TabStave(0, 16, 120);
+                var numStrings = scope.chord ? scope.chord.notes.length : 6;
+                var tabstave = new Vex.Flow.TabStave(0, 16, 120, {num_lines: numStrings});
                 tabstave.addTabGlyph();
                 tabstave.setContext(ctx).draw();
 
