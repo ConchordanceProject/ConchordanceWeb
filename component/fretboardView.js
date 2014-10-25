@@ -91,6 +91,7 @@ angular.module('conchordance')
                 svg.clear();
                 var fretboardWidth = 700;
                 var fretboardHeight = 100;
+                var stringThickness = 3;
 
                 // I never want to think about this fret placement math again.
                 for (var f = 1; f<=numFrets+1; ++f) {
@@ -117,6 +118,24 @@ angular.module('conchordance')
                 }
                 svg.rectangle(scope.fretboardLeft-10, scope.fretboardTop-5, 10, nutSpan * scope.stringSpacing+10, {fill: "#888", stroke: "none"});
 
+                // fret markers
+                var markedFrets = [3, 5, 7, 9];
+                for (var i = 0; i<markedFrets.length; ++i) {
+                    var fret = markedFrets[i];
+                    if (fret > numFrets)
+                        break;
+                    var x = scope.fretboardLeft + scope.scaledFretPositions[fret] - (scope.scaledFretPositions[fret] - scope.scaledFretPositions[fret-1])/2;
+                    var y = scope.fretboardTop + fretboardHeight/2;
+                    svg.circle(x, y, 8, {class: "fret-marker"});
+                }
+                if (numFrets >= 12) {
+                    var x = scope.fretboardLeft + scope.scaledFretPositions[12] - (scope.scaledFretPositions[12] - scope.scaledFretPositions[11])/2;
+                    var y1 = scope.fretboardTop + fretboardHeight/2 - scope.stringSpacing;
+                    var y2 = scope.fretboardTop + fretboardHeight/2 + scope.stringSpacing;
+                    svg.circle(x, y1, 8, {class: "fret-marker"});
+                    svg.circle(x, y2, 8, {class: "fret-marker"});
+                }
+
                 // frets
                 var fretWidth = 4;
                 for (var f = 1; f<numFrets; ++f) {
@@ -134,7 +153,6 @@ angular.module('conchordance')
                 }
 
                 // strings
-                var stringThickness = 3;
                 for (var s = 0; s<strings; ++s) {
                     var stringOffset = 0;
                     if (scope.instrument != null)
@@ -151,7 +169,7 @@ angular.module('conchordance')
                             if (!scope.fretboard[s][f])
                                 continue;
 
-                            scope.drawFretdot(svg, s, f, false);
+                            scope.drawFretdot(svg, s, f, true);
                         }
                     }
                 }

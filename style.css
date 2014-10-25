@@ -37,6 +37,10 @@ body {
 .fretdot.highlight {
     fill: #05F;
 }
+.fret-marker {
+    stroke-width: 0px;
+    fill: #CCC
+}
 
 .string {
     stroke-width: 1px;
