@@ -1,5 +1,5 @@
 angular.module('conchordance')
-.directive('fretboardView', function() {
+.directive('fretboardView', ['instrument', function(instrumentService) {
     return {
         restrict: 'E',
         scope: {
@@ -16,7 +16,17 @@ angular.module('conchordance')
             /**
              * Highlighted position
              */
-            chordFingering: '='
+            chordFingering: '=',
+
+            /**
+             * "true" or "false" - whether or not to update selectedNote when a note is clicked
+             */
+            selectOnClick: '@',
+
+            /**
+             *
+             */
+            selectedNote: '='
         },
         link: function(scope, element, attrs) {
             var strings = 6;
@@ -27,6 +37,7 @@ angular.module('conchordance')
                     strings = newValue.tuning.length;
                     numFrets = newValue.frets;
                 }
+                scope.selectedFretdot = null;
                 scope.render();
             });
 
@@ -45,9 +56,6 @@ angular.module('conchordance')
                 .defaults({fill: "white", stroke: "black", strokeWidth:"1px"});
             element.append(svg);
 
-            var FRETDOT_MUTED = "#888"; // TODO somehow derive from CSS
-            var FRETDOT_HIGHLIGHT = "#05F"; // TODO somehow derive from CSS
-        	
             scope.unscaledFretPositions = [0.0, 0.056, 0.109, 0.159, 0.206, 0.251, 0.293, 0.333, 0.370, 0.405, 0.439, 0.470, 0.5, 0.528, 0.555, 0.580, 0.603, 0.625, 0.646, 0.666, 0.685];
             scope.scaledFretPositions = new Array(scope.unscaledFretPositions.length);
             scope.scaledFretPositions[0] = 0;
@@ -146,6 +154,10 @@ angular.module('conchordance')
                     }
                 }
 
+                // highlight the selected fretdot
+                if (scope.selectedFretdot)
+                    scope.drawFretdot(svg, scope.selectedFretdot.string, scope.selectedFretdot.fret, true);
+
                 // Draw selected chord fingering
                 if (scope.chordFingering != null) {
                     for (var s = 0; s<strings; ++s) {
@@ -154,6 +166,31 @@ angular.module('conchordance')
                     }
                 }
             };
+
+            scope.getFretdotForPosition = function(x, y) {
+                var string = Math.floor((y - scope.fretboardTop + scope.stringSpacing/2) / scope.stringSpacing);
+
+                var offsetX = x - scope.fretboardLeft;
+                var fret = scope.instrument.fretNutPositions[string];
+                while (fret < numFrets) {
+                    var fretX = scope.scaledFretPositions[fret];
+                    if (fretX > offsetX)
+                        break;
+                    ++fret;
+                }
+
+                return {string: string, fret: fret};
+            }
+
+            element.click(function(event) {
+                if (scope.selectOnClick) {
+                    scope.selectedFretdot = scope.getFretdotForPosition(event.offsetX, event.offsetY);
+                    scope.selectedNote = instrumentService.getNote(scope.instrument, scope.selectedFretdot.string, scope.selectedFretdot.fret);
+                    scope.$apply();
+
+                    scope.render();
+                }
+            });
         }
     };
-});
+}]);

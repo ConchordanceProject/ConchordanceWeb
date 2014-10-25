@@ -10,7 +10,7 @@ angular.module('conchordance')
                 chordTypeName: "M",
                 instrumentName: "Guitar",
                 chordFingering: "x02220"
-            }
+            };
 
             $scope.parameters = conchordanceURL.readParameters($scope.defaults);
 
@@ -23,7 +23,7 @@ angular.module('conchordance')
                 chordType: null,
                 instrument: null,
                 chordFingering: null
-            }
+            };
 
             $conchordance.getInstruments()
                 .success(function(results) {

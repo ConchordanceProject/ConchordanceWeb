@@ -15,10 +15,11 @@
 				    <tuning-hint instrument="selections.instrument"></tuning-hint>
 				</div>
 				<br/>
-				<fretboard-view instrument="selections.instrument"></fretboard-view>
+				<fretboard-view instrument="selections.instrument" select-on-click="true" selected-note="instrumentSelections.selectedNote"></fretboard-view>
 				<br/>
-				<br/>				
-				<scale-staff notes="notes"></scale-staff>
+				<br/>
+                <scale-staff notes="instrumentSelections.selectedNoteArray"></scale-staff>
+                <scale-staff notes="instrumentSelections.tuningNotes"></scale-staff>
 			</div>
 		</div>
 	</div>

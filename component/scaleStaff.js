@@ -4,10 +4,12 @@ angular.module('conchordance')
         restrict: 'E',
         templateUrl: 'views/scaleStaff.html',
         scope: {
-            notes: '='
+            myNotes: '=notes'
         },
         link: function(scope, element, attrs) {
-        	scope.renderStaff = function() {
+        	var renderStaff = function() {
+                console.log("I'm a staff rendering:");
+                console.log(scope.myNotes);
             	var canvas = element[0].children[0];
             	var renderer = new Vex.Flow.Renderer(canvas, Vex.Flow.Renderer.Backends.CANVAS);
 
@@ -17,10 +19,10 @@ angular.module('conchordance')
     			var stave = new Vex.Flow.Stave(10, 0, 500);
     			stave.addClef("treble").setContext(context).draw();
 
-                if (scope.notes) {
-                    var vexNotes = new Array(scope.notes.length);
+                if (scope.myNotes) {
+                    var vexNotes = new Array(scope.myNotes.length);
                     for (var i = 0; i<vexNotes.length; ++i) {
-                        var note = scope.notes[i];
+                        var note = scope.myNotes[i];
                         vexNotes[i] = $music.vexFlowNote(note, 4);
                     }
 
@@ -44,7 +46,9 @@ angular.module('conchordance')
                 }
         	};
 
-            scope.$watch('notes', scope.renderStaff);
+            scope.$watch('myNotes', function() {
+                renderStaff();
+            });
         },
     };
 }]);
