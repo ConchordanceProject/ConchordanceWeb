@@ -38,7 +38,7 @@ angular.module('conchordance')
                 svg.line(chordLeft, chordBottom, chordRight, chordBottom);
 
                 // chord position number
-                if (scope.chord && scope.chord.position > 0)
+                if (scope.chord && scope.chord.diagramPosition > 0)
                     svg.text(scope.chord.position, chordLeft-17, chordTop+10, {class: "chord-position"});
 
                 // frets

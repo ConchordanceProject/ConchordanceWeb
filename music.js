@@ -102,14 +102,21 @@ Music = {
 	},
 	
 	calcDiagram: function(chordFingering) {
-        var numStrings = chordFingering.notes.length;
-		chordFingering.diagramFrets = new Array(numStrings);
-		for (var s = 0; s<numStrings; ++s) {
-			if (chordFingering.capoRelativeFrets[s] <= 0)
-				chordFingering.diagramFrets[s] = chordFingering.capoRelativeFrets[s];
-			else
-				chordFingering.diagramFrets[s] = chordFingering.capoRelativeFrets[s] - chordFingering.position + 1;
-		}
-        console.log(chordFingering.diagramFrets);
+        // If any fret is used outside of the diagram size (5 frets), offset all the frets
+        if (chordFingering.maxFret > 5) {
+            var numStrings = chordFingering.notes.length;
+            chordFingering.diagramFrets = new Array(numStrings);
+            chordFingering.diagramPosition = chordFingering.position;
+            for (var s = 0; s<numStrings; ++s) {
+                if (chordFingering.capoRelativeFrets[s] <= 0)
+                    chordFingering.diagramFrets[s] = chordFingering.capoRelativeFrets[s];
+                else
+                    chordFingering.diagramFrets[s] = chordFingering.capoRelativeFrets[s] - chordFingering.diagramPosition + 1;
+            }
+        } else {
+            // The chord is in the open position, render it exactly as is
+            chordFingering.diagramPosition = 0;
+            chordFingering.diagramFrets = chordFingering.capoRelativeFrets;
+        }
 	}
 };
