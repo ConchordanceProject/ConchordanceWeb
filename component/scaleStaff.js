@@ -1,22 +1,31 @@
+/**
+ * Renders a monophonic voice, as in a scale or arpeggio
+ */
 angular.module('conchordance')
 .directive('scaleStaff', ['$music', function($music) {
     return {
         restrict: 'E',
-        templateUrl: 'views/scaleStaff.html',
+        template: '<canvas width=500 height=150></canvas>',
         scope: {
-            myNotes: '=notes'
+            myNotes: '=notes',
+            staffWidth: '@'
         },
         link: function(scope, element, attrs) {
         	var renderStaff = function() {
-                console.log("I'm a staff rendering:");
-                console.log(scope.myNotes);
             	var canvas = element[0].children[0];
+                if (scope.staffWidth)
+                    canvas.width = scope.staffWidth;
+                var width = canvas.width;
+                var staffWidth = width-20;
+                var height = canvas.height;
+                console.log(width +','+height);
+
             	var renderer = new Vex.Flow.Renderer(canvas, Vex.Flow.Renderer.Backends.CANVAS);
 
     			var context = renderer.getContext();
-    			context.clearRect(0, 0, 700, 200);
+    			context.clearRect(0, 0, width, height);
     			
-    			var stave = new Vex.Flow.Stave(10, 0, 500);
+    			var stave = new Vex.Flow.Stave(10, 0, staffWidth);
     			stave.addClef("treble").setContext(context).draw();
 
                 if (scope.myNotes) {
@@ -36,10 +45,10 @@ angular.module('conchordance')
                     // Add notes to voice
                     voice.addTickables(vexNotes);
 
-                    // Format and justify the notes to 500 pixels
+                    // Format and justify the notes to the space given
                     new Vex.Flow.Formatter()
                         .joinVoices([voice])
-                        .format([voice], 500);
+                        .format([voice], staffWidth);
 
                     // Render voice
                     voice.draw(context, stave);
