@@ -62,3 +62,11 @@ body {
 .welcome-message.ng-hide {
     max-height: 0;
 }
+
+chord-fingering-list chord-fingering-view {
+  cursor: pointer;
+}
+
+chord-fingering-list chord-fingering-view:hover svg {
+  zoom: 1.1;
+}
