@@ -10,7 +10,7 @@ angular.module('conchordance')
                 if (selections.chordFingering) {
                     var fingerString = "";
                     var frets = selections.chordFingering.capoRelativeFrets;
-                    var numStrings = selections.chordFingering.numStrings;
+                    var numStrings = selections.chordFingering.notes.length;
                     for (var s = numStrings-1; s>0; --s)
                         fingerString += (frets[s] == -1 ? "x" : frets[s]) + "-";
                     fingerString += frets[0] == -1 ? "x" : frets[0]

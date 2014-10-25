@@ -102,23 +102,14 @@ Music = {
 	},
 	
 	calcDiagram: function(chordFingering) {
-		var lowestFret = 9001;
-		var numFingers = 0;
-		for (var s = 0; s<chordFingering.numStrings; ++s) {
-			if (chordFingering.capoRelativeFrets[s] > 0) {
-				++numFingers;
-				if (chordFingering.absoluteFrets[s] < lowestFret)
-					lowestFret = chordFingering.absoluteFrets[s];
-			}
-		}
-		
-		chordFingering.position = numFingers > 0 ? lowestFret : 0;
-		chordFingering.diagramFrets = new Array(chordFingering.numStrings);
-		for (var s = 0; s<chordFingering.numStrings; ++s) {
+        var numStrings = chordFingering.notes.length;
+		chordFingering.diagramFrets = new Array(numStrings);
+		for (var s = 0; s<numStrings; ++s) {
 			if (chordFingering.capoRelativeFrets[s] <= 0)
 				chordFingering.diagramFrets[s] = chordFingering.capoRelativeFrets[s];
 			else
 				chordFingering.diagramFrets[s] = chordFingering.capoRelativeFrets[s] - chordFingering.position + 1;
 		}
+        console.log(chordFingering.diagramFrets);
 	}
 };

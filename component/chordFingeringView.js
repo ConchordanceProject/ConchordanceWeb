@@ -17,7 +17,7 @@ angular.module('conchordance')
                 element.empty();
 
         		var numFrets = 5;
-        		var numStrings = scope.chord == null ? 6 : scope.chord.numStrings;
+        		var numStrings = scope.chord == null ? 6 : scope.chord.absoluteFrets.length;
 
         		var chordWidth = Math.min(80, scope.width-20);
             	var chordHeight = Math.min(100, scope.height-10);
@@ -54,9 +54,9 @@ angular.module('conchordance')
 
                 // fretdots
                 if (scope.chord) {
-                    for (var s = 0; s<scope.chord.numStrings; ++s) {
+                    for (var s = 0; s<numStrings; ++s) {
                         var fret = scope.chord.diagramFrets[s];
-                        var x = chordLeft+(scope.chord.numStrings-s-1)*stringSpacing;
+                        var x = chordLeft+(numStrings-s-1)*stringSpacing;
                         var y = chordTop+fret*fretSpacing-fretSpacing/2;
                         if (fret > 0)
                             svg.circle(x, y, fretSpacing/4, {class: "fretdot"});
