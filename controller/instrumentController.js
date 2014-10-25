@@ -1,5 +1,5 @@
 angular.module('conchordance')
-.controller('instrument', ['$scope', 'conchordanceURL', function($scope, conchordanceURL) {
+.controller('instrument', ['$scope', 'conchordanceURL', 'midi', function($scope, conchordanceURL, midi) {
 
         $scope.showTuning = function() {
             if ($scope.selections.instrument) {
@@ -23,10 +23,13 @@ angular.module('conchordance')
         });
 
         $scope.$watch('instrumentSelections.selectedNote', function() {
-            if ($scope.instrumentSelections.selectedNote)
+            if ($scope.instrumentSelections.selectedNote) {
                 $scope.instrumentSelections.selectedNoteArray = [$scope.instrumentSelections.selectedNote];
-            else
+                midi.playNote($scope.instrumentSelections.selectedNote);
+            }
+            else {
                 $scope.instrumentSelections.selectedNoteArray = [];
+            }
         });
 	}
 ]);
