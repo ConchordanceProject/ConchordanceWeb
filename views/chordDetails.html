@@ -7,8 +7,12 @@
             <chord-fingering-notes chord-fingering="selections.chordFingering"></chord-fingering-notes>
             <br/>
             <inversion-text chord-fingering="selections.chordFingering"></inversion-text>
+            <br/>
+            <button class="btn btn-primary btn-sm" ng-click="play()">&#9654; Preview</button>
         </div>
     </div>
+    
+    
 
     <tuning-hint instrument="selections.instrument" class="pull-right"></tuning-hint>
     <fretboard-view instrument="selections.instrument"
