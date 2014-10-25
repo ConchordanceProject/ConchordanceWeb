@@ -63,10 +63,14 @@ body {
     max-height: 0;
 }
 
-chord-fingering-list chord-fingering-view {
+chord-fingering-list chord-fingering-view svg {
   cursor: pointer;
 }
 
-chord-fingering-list chord-fingering-view:hover svg {
-  zoom: 1.1;
+chord-fingering-list chord-fingering-view svg circle.fretdot {
+  transition: fill 0.5s ease;
+}
+
+chord-fingering-list chord-fingering-view:hover svg circle.fretdot {
+  fill: rgb(69, 130, 236);
 }
