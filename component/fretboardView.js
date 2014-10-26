@@ -204,7 +204,21 @@ angular.module('conchordance')
 
             element.click(function(event) {
                 if (scope.selectOnClick) {
-                    scope.selectedFretdot = scope.getFretdotForPosition(event.offsetX, event.offsetY);
+                    // Firefox behaves differently from everything else
+                    console.log(event);
+
+                    if( typeof event.offsetX === "undefined" || typeof event.offsetY === "undefined") {
+                        var targetOffset = $(event.target).offset();
+                        event.offsetX = event.pageX - targetOffset.left;
+                        event.offsetY = event.pageY - targetOffset.top;
+                    }
+
+                    var x = event.offsetX;
+                    var y = event.offsetY;
+
+                    console.log(x + ', ' + y);
+
+                    scope.selectedFretdot = scope.getFretdotForPosition(x, y);
                     scope.selectedNote = instrumentService.getNote(scope.instrument, scope.selectedFretdot.string, scope.selectedFretdot.fret);
                     scope.$apply();
 
