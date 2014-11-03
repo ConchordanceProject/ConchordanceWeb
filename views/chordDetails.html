@@ -9,31 +9,43 @@
             <inversion-text chord-fingering="selections.chordFingering"></inversion-text>
             <br/>
             <button class="btn btn-primary btn-sm" ng-click="play()">&#9654; Preview</button>
+            <div class="row">
+                <chord-fingering-view
+                        fingering="selections.chordFingering"
+                        render-mode="diagram">
+                </chord-fingering-view>
+                <chord-fingering-view
+                        fingering="selections.chordFingering"
+                        render-mode="notes">
+                </chord-fingering-view>
+                <chord-fingering-view
+                        fingering="selections.chordFingering"
+                        render-mode="tab">
+                </chord-fingering-view>
+            </div>
         </div>
     </div>
-    
-    
 
-    <tuning-hint instrument="selections.instrument" class="pull-right"></tuning-hint>
-    <fretboard-view instrument="selections.instrument"
-                    chord-fingering="selections.chordFingering">
-    </fretboard-view>
-
-    <br/>
-    <br/>
     <div class="row">
-        <chord-fingering-view
-                fingering="selections.chordFingering"
-                render-mode="diagram">
-        </chord-fingering-view>
-        <chord-fingering-view
-                fingering="selections.chordFingering"
-                render-mode="notes">
-        </chord-fingering-view>
-        <chord-fingering-view
-                fingering="selections.chordFingering"
-                render-mode="tab">
-        </chord-fingering-view>
+        <tuning-hint instrument="selections.instrument" class="pull-right"></tuning-hint>
+        <fretboard-view instrument="selections.instrument"
+                        chord-fingering="selections.chordFingering">
+        </fretboard-view>
     </div>
-    <br/>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4>Suggested Fingerings</h4>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <chord-fingering-view
+                        ng-repeat="chord in alternateFingerings"
+                        fingering="chord"
+                        render-mode="diagram"
+                        show-fingers="true">
+                </chord-fingering-view>
+            </div>
+        </div>
+    </div>
 </div>

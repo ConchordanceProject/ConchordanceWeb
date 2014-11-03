@@ -31,8 +31,11 @@ angular.module('conchordance')
         }
 
         $scope.chordParametersUpdated = function() {
-            conchordanceURL.showChordParameter($scope.selections);
-            conchordanceURL.showInstrumentParameter($scope.selections);
+            conchordanceURL.showParameters($scope.parameters,
+                $scope.selections.root,
+                $scope.selections.chordType,
+                $scope.selections.instrument,
+                null);
 
             $scope.chordFingerings = [];
 
@@ -61,5 +64,11 @@ angular.module('conchordance')
         $scope.$watch('selections.instrument', $scope.chordParametersUpdated);
         $scope.$watch('selections.root', $scope.chordParametersUpdated);
         $scope.$watch('selections.chordType', $scope.chordParametersUpdated);
+
+        conchordanceURL.showParameters($scope.parameters,
+            $scope.selections.root,
+            $scope.selections.chordType,
+            $scope.selections.instrument,
+            null);
     }
 ]);

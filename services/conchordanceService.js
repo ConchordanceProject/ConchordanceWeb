@@ -56,4 +56,16 @@ angular.module('conchordance').service('$conchordance', function($http) {
             }
         });
     };
+    this.getAlternateFingerings = function(root, type, instrument, frets) {
+        return $http({
+            method: 'GET',
+            url: requestBase + 'chords/alternate-fingerings',
+            params: {
+                type: type,
+                root: root,
+                instrument: instrument,
+                frets: frets
+            }
+        });
+    };
 });
