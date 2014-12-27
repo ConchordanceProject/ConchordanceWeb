@@ -41,6 +41,14 @@ body {
     stroke-width: 0px;
     fill: #CCC
 }
+.fretdot-finger {
+    font-family: "Arial";
+    font-style: normal;
+    font-weight: normal;
+    stroke-width: 1px;
+    font-size: 10px;
+    stroke: #000;
+}
 
 .string {
     stroke-width: 1px;

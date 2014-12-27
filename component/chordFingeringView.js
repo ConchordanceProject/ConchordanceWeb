@@ -4,8 +4,8 @@ angular.module('conchordance')
         restrict: 'E',
         scope: {
         	chord: '=fingering',
-        	highlight: '=highlight',
-        	renderMode: '@'
+        	renderMode: '@',
+            showFingers: '@'
         },
         link: function(scope, element, attrs) {
         	element.addClass('chord-sample');
@@ -58,10 +58,15 @@ angular.module('conchordance')
                         var fret = scope.chord.diagramFrets[s];
                         var x = chordLeft+(numStrings-s-1)*stringSpacing;
                         var y = chordTop+fret*fretSpacing-fretSpacing/2;
-                        if (fret > 0)
+                        if (fret > 0) {
                             svg.circle(x, y, fretSpacing/4, {class: "fretdot"});
-                        else if (fret == 0)
+                            if (scope.showFingers) {
+                                svg.text(scope.chord.fingers[s], x-3, y+3, {class: "fretdot-finger"});
+                            }
+                        } else if (fret == 0) {
+                            // An open string is never fingered, so no text is required
                             svg.circle(x, y, fretSpacing/4, {class: "fretdot open"});
+                        }
                     }
                 }
 

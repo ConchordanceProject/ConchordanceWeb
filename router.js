@@ -22,5 +22,9 @@ angular.module('conchordance').config(function($stateProvider, $urlRouterProvide
         .state('about', {
             url: '/about',
             templateUrl: 'views/about.html'
+        })
+        .state('all', {
+            url: '/all',
+            templateUrl: 'views/allChords.html'
         });
 });

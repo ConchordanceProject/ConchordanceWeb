@@ -1,27 +1,40 @@
 angular.module('conchordance')
     .factory('conchordanceURL', ['$location', function($location) {
         return {
-            showChordParameter: function(selections) {
-                if (selections.root && selections.chordType)
-                    $location.search('chord', selections.root + "-" + selections.chordType.name);
-            },
+            showParameters: function(parameters, root, chordType, instrument, chordFingering) {
+                // If a root and chord type are given, show that in the URL
+                if (root && chordType) {
+                    var chordParam = root + "-" + chordType.name;
+                    $location.search('chord', chordParam);
+                    parameters.root = root;
+                    parameters.chordType = chordType.name;
+                } else {
+                    parameters.root = null;
+                    parameters.chordType = null;
+                }
 
-            showFingeringParameter: function(selections) {
-                if (selections.chordFingering) {
+                // If a chord fingering is given, show its shape in the URL
+                if (chordFingering) {
                     var fingerString = "";
-                    var frets = selections.chordFingering.capoRelativeFrets;
-                    var numStrings = selections.chordFingering.notes.length;
+                    var frets = chordFingering.capoRelativeFrets;
+                    var numStrings = chordFingering.notes.length;
                     for (var s = numStrings-1; s>0; --s)
                         fingerString += (frets[s] == -1 ? "x" : frets[s]) + "-";
                     fingerString += frets[0] == -1 ? "x" : frets[0]
 
                     $location.search('position', fingerString);
+                    parameters.position = fingerString;
+                } else {
+                    parameters.position = null;
                 }
-            },
 
-            showInstrumentParameter: function(selections) {
-                if (selections.instrument)
-                    $location.search('instr', selections.instrument.name);
+                // If an instrument is given, show its name in the URL
+                if (instrument) {
+                    $location.search('instrument', instrument.name);
+                    parameters.instrumentName = instrument.name;
+                } else {
+                    parameters.instrumentName = null;
+                }
             },
 
             readParameters: function(defaults) {

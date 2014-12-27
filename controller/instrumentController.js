@@ -17,7 +17,11 @@ angular.module('conchordance')
         };
 
         $scope.$watch('selections.instrument', function() {
-            conchordanceURL.showInstrumentParameter($scope.selections);
+            conchordanceURL.showParameters($scope.parameters,
+                null,
+                null,
+                $scope.selections.instrument,
+                null);
 
             $scope.showTuning();
         });
