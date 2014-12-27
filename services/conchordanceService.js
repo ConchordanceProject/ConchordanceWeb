@@ -68,4 +68,13 @@ angular.module('conchordance').service('$conchordance', function($http) {
             }
         });
     };
+    this.getAllFingerings = function(instrument) {
+        return $http({
+             method: 'GET',
+             url: requestBase + 'chords/all',
+             params: {
+                 instrument: instrument
+             }
+        });
+    };
 });
