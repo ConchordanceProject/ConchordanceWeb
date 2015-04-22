@@ -25,7 +25,7 @@ angular.module('conchordance')
     			context.clearRect(0, 0, width, height);
     			
     			var stave = new Vex.Flow.Stave(10, 0, staffWidth);
-    			stave.addClef("treble").setContext(context).draw();
+    			stave.addClef('treble').setContext(context).draw();
 
                 if (scope.myNotes) {
                     var vexNotes = new Array(scope.myNotes.length);
@@ -57,6 +57,6 @@ angular.module('conchordance')
             scope.$watch('myNotes', function() {
                 renderStaff();
             });
-        },
+        }
     };
 }]);

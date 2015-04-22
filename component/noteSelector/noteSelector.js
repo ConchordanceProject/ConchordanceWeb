@@ -2,7 +2,7 @@ angular.module('conchordance')
     .directive('noteSelector', ['$music', '$sce', function($music, $sce) {
         return {
             restrict: 'E',
-            templateUrl: 'views/noteSelector.html',
+            templateUrl: 'component/noteSelector/noteSelector.html',
             scope: {
                 selectedNote: '='
             },

@@ -2,7 +2,7 @@ angular.module('conchordance')
     .directive('chordTypeSelector', ['$music', '$sce', function($music, $sce) {
         return {
             restrict: 'E',
-            templateUrl: 'views/chordTypeSelector.html',
+            templateUrl: 'component/chordTypeSelector/chordTypeSelector.html',
             scope: {
                 types: '=',
                 selectedType: '='
