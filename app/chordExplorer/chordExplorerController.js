@@ -1,8 +1,10 @@
 angular.module('conchordance')
 .controller('main', ['$scope', '$state', '$music', 'conchordanceURL', '$conchordance',
     function($scope, $state, $music, conchordanceURL, $conchordance) {
+        var chordsHaveBeenSearched = false;
+
 		$scope.findChords = function() {
-			$scope.showWelcome = false;
+            chordsHaveBeenSearched = true;
             $scope.searchInProgress = true;
             $scope.chordFingerings = [];
 			
@@ -48,6 +50,11 @@ angular.module('conchordance')
                     ).success(function(result) {
                         $scope.fretboard = result;
                     });
+
+                // If no search has been made yet, start a search
+                if (!chordsHaveBeenSearched) {
+                    $scope.findChords();
+                }
             }
         }
 
@@ -56,10 +63,7 @@ angular.module('conchordance')
             $state.go('chordDetails');
 		};
 
-        $scope.showWelcome = true;
         $scope.searchInProgress = false;
-
-        //$scope.showParameters();
 
         $scope.$watch('selections.instrument', $scope.chordParametersUpdated);
         $scope.$watch('selections.root', $scope.chordParametersUpdated);
