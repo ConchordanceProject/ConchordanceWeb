@@ -39,17 +39,17 @@ angular.module('conchordance')
 
                 // chord position number
                 if (scope.chord && scope.chord.diagramPosition > 0)
-                    svg.text(scope.chord.position, chordLeft-17, chordTop+10, {class: "chord-position"});
+                    svg.text(scope.chord.position, chordLeft-17, chordTop+10, {class: 'chord-position'});
 
                 // frets
                 for (var f=1; f<numFrets; ++f) {
                     var fretY = chordTop+f*fretSpacing;
-                    svg.line(chordLeft, fretY, chordRight, fretY, {class: "fret"});
+                    svg.line(chordLeft, fretY, chordRight, fretY, {class: 'fret'});
                 }
                 // strings
                 for (var s=0; s<numStrings; ++s) {
                     var stringX = chordLeft+s*stringSpacing;
-                    svg.line(stringX, chordTop, stringX, chordBottom, {class: "string"});
+                    svg.line(stringX, chordTop, stringX, chordBottom, {class: 'string'});
                 }
 
                 // fretdots
@@ -59,13 +59,13 @@ angular.module('conchordance')
                         var x = chordLeft+(numStrings-s-1)*stringSpacing;
                         var y = chordTop+fret*fretSpacing-fretSpacing/2;
                         if (fret > 0) {
-                            svg.circle(x, y, fretSpacing/4, {class: "fretdot"});
+                            svg.circle(x, y, fretSpacing/4, {class: 'fretdot'});
                             if (scope.showFingers) {
-                                svg.text(scope.chord.fingers[s], x-3, y+3, {class: "fretdot-finger"});
+                                svg.text(scope.chord.fingers[s], x-3, y+3, {class: 'fretdot-finger'});
                             }
                         } else if (fret == 0) {
                             // An open string is never fingered, so no text is required
-                            svg.circle(x, y, fretSpacing/4, {class: "fretdot open"});
+                            svg.circle(x, y, fretSpacing/4, {class: 'fretdot open'});
                         }
                     }
                 }
