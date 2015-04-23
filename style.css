@@ -4,6 +4,10 @@ body {
 	padding-top: 70px; /* for Bootstrap's fixed top header bar */
 }
 
+.fb-like {
+    padding-left: 15px;
+}
+
 .note-name {
 	margin: 2px;
 	font-style: italic;
@@ -61,18 +65,6 @@ body {
     font-weight: normal;
     stroke-width: 1px;
     font-size: 10px;
-}
-
-.welcome-message {
-    overflow-y: hidden;
-    max-height: 200px; /* approximate max height */
-
-    -webkit-transition:all linear 0.25s;
-    transition:all linear 0.25s;
-}
-
-.welcome-message.ng-hide {
-    max-height: 0;
 }
 
 chord-fingering-list chord-fingering-view svg {
