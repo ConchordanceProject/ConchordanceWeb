@@ -3,6 +3,28 @@ Music = {
 	flatNotes: ["A", "Bb", "B", "C", "Db", "D", "Eb", "Fb", "F", "Gb", "G", "Ab"],
 	numerals: ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IIX", "IX", "X", "XI", "XII", "XIII"],
 
+    trebleToBass: function(note) {
+        var modifier = note.modifier;
+        var octave = note.octave + 2;
+        var noteName = note.noteName;
+
+        // Offset by two note names
+        var charNumber = noteName.charCodeAt(0) - 2;
+        if (charNumber < 65) {
+            // Wrap around if it falls below A (65)
+            charNumber += 7;
+        }
+        var noteName = String.fromCharCode(charNumber);
+        if (noteName == 'A' || noteName == 'B')
+            octave -= 1;
+
+        return {
+            noteName: noteName,
+            modifier: modifier,
+            octave: octave
+        };
+    },
+
 	modifierHtml: function(modifier) {
 		if (modifier == 1)
 			return "&#9839";
@@ -24,10 +46,12 @@ Music = {
 		return this.numerals[interval.major] + this.modifierHtml(interval.modifier);	
 	},
 	
-	vexFlowKey: function(note) {		
+	vexFlowKey: function(note) {
+        var noteName = note.noteName.toLowerCase();
+        var octave = note.octave;
 		var modifier = this.vexFlowModifier(note.modifier);
-		
-		return note.noteName.toLowerCase() + modifier + "/" + note.octave;
+
+		return noteName + modifier + "/" + octave;
 	},
 	
 	vexFlowModifier: function(modifier) {
@@ -76,7 +100,7 @@ Music = {
 	/**
 	 * Creates a VexFlow note for the given note
 	 */
-	vexFlowNote: function(note, duration) {	
+	vexFlowNote: function(note, duration) {
 		var keys = [this.vexFlowKey(note)];
 		var vexNote = new Vex.Flow.StaveNote({keys: keys, duration: (duration+"")});
 	    
@@ -94,7 +118,7 @@ Music = {
 			newNotes[i] = {
 				noteName: notes[i].noteName,
 				modifier: notes[i].modifier,
-				octave: notes[i].octave + octaves,
+				octave: notes[i].octave + octaves
 			};
 		}
 		

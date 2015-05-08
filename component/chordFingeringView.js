@@ -5,7 +5,8 @@ angular.module('conchordance')
         scope: {
         	chord: '=fingering',
         	renderMode: '@',
-            showFingers: '@'
+            showFingers: '@',
+            clef: '='
         },
         link: function(scope, element, attrs) {
         	element.addClass('chord-sample');
@@ -100,13 +101,19 @@ angular.module('conchordance')
 				var ctx = renderer.getContext();
 				var stave = new Vex.Flow.Stave(0, 35, 120);
 				stave.setContext(ctx).draw();
-				
-				stave.addClef("treble").draw();
+
+                var clef = scope.clef || 'treble';
+				stave.addClef(clef).draw();
 
                 if (scope.chord) {
                     var chordNotes = new Array(scope.chord.sortedNotes.length);
                     for (var i = 0; i<chordNotes.length; ++i) {
-                        chordNotes[i] = scope.chord.sortedNotes[i].note;
+                        var note = scope.chord.sortedNotes[i].note;
+
+                        // Convert to the clef we're rendering in
+                        if (clef === 'bass')
+                            note = $music.trebleToBass(note);
+                        chordNotes[i] = note;
                     }
 
                     var notes = [$music.vexFlowChord(chordNotes)];

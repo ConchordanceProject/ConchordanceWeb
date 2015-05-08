@@ -26,7 +26,7 @@
 				<div class="row">				
 					<div class="col-sm-4">
 						<label class="control-label">Intervals in Chord</label>
-						<br></br>
+						<br/>
 						<span class="note-name"
 							ng-repeat="interval in selections.chordType.intervals"
 							ng-bind-html="interval | scaleDegree">
@@ -37,13 +37,13 @@
 					<div class="col-sm-2">
 						<div class="form-group">
 	                        <label class="control-label">Notes</label>
-	                        <br></br>
+	                        <br/>
 	                        <span class="note-name"
 	                             ng-repeat="note in selectedChord.notes"
 	                             ng-bind-html="note | noteName" >
                         	</span>
 	                    </div>
-	                    <scale-staff notes="notes"></scale-staff>
+	                    <scale-staff notes="notes" clef="selections.instrument.clef"></scale-staff>
 					</div>
 				</div>
 			</div>

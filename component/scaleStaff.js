@@ -8,7 +8,8 @@ angular.module('conchordance')
         template: '<canvas width=500 height=150></canvas>',
         scope: {
             myNotes: '=notes',
-            staffWidth: '@'
+            staffWidth: '@',
+            clef: '='
         },
         link: function(scope, element, attrs) {
         	var renderStaff = function() {
@@ -23,14 +24,20 @@ angular.module('conchordance')
 
     			var context = renderer.getContext();
     			context.clearRect(0, 0, width, height);
-    			
+
+                var clef = scope.clef || 'treble';
     			var stave = new Vex.Flow.Stave(10, 0, staffWidth);
-    			stave.addClef('treble').setContext(context).draw();
+    			stave.addClef(clef).setContext(context).draw();
 
                 if (scope.myNotes) {
                     var vexNotes = new Array(scope.myNotes.length);
                     for (var i = 0; i<vexNotes.length; ++i) {
                         var note = scope.myNotes[i];
+
+                        // Convert the note to the clef we're rendering in
+                        if (clef === 'bass')
+                            note = $music.trebleToBass(note);
+
                         vexNotes[i] = $music.vexFlowNote(note, 4);
                     }
 
