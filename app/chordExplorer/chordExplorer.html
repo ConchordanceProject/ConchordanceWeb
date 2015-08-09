@@ -1,18 +1,13 @@
 <div class="container" ng-controller="main">
-    <div class="alert alert-info">
-        <strong>Welcome!</strong> We'd love to hear your <a href="mailto:conchordanceproject@gmail.com?subject=Feedback">feedback</a> about Conchordance.
-    </div>
+    <feedback-prompt></feedback-prompt>
 
     <div class="panel panel-default">
-
        <div class="panel-heading">
            <h4>Chord Explorer</h4>
        </div>
 
        <div class="panel-body">
-
            <form ng-submit="findChords()" role="form" class="form">
-
                <div class="row">
                    <div class="col-sm-4">
                        <div class="form-group">

@@ -1,4 +1,4 @@
-angular.module('conchordance', ['ui.router', 'ngAnimate'])
+angular.module('conchordance', ['ui.router', 'ngAnimate', 'ngCookies'])
 .factory('$music', function() {
 	return Music;
 })
